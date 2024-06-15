@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Bus Tracking</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+    <style>
+        #map { height: 600px; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        var map = L.map('map').setView([48.476165, -123.332778], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('connect', function() {
+            console.log('Connected to SocketIO server');
+        });
+
+        var markers = [];
+        var polylines = {};
+
+        socket.on('vehicle_update', function(data) {
+            console.log('Received vehicle update:', data);
+
+            var latitude = data.latitude;
+            var longitude = data.longitude;
+            var route_id = data.route_id;
+
+            // Add marker for vehicle
+            var marker = L.marker([latitude, longitude]).addTo(map);
+            marker.bindPopup(`Route ID: ${route_id}`);
+            markers.push(marker);
+
+            // Add polylines for routes
+            if (!polylines[route_id]) {
+                polylines[route_id] = [];
+            }
+            polylines[route_id].push([latitude, longitude]);
+
+            // Remove previous polylines
+            for (var polyline_id in polylines) {
+                if (polylines.hasOwnProperty(polyline_id)) {
+                    var polyline = L.polyline(polylines[polyline_id], {color: 'blue'}).addTo(map);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
