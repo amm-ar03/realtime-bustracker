@@ -30,10 +30,15 @@ def emit_data():
                         longitude = position.get('longitude')
                         if latitude and longitude:
                             route_id = vehicle.get('trip', {}).get('routeId', 'N/A')
+                            vehicle_id = vehicle.get('vehicle', {}).get('id', 'UNKNOWN')
                             vehicle_status = vehicle.get('currentStatus', 'UNKNOWN')
-                            socketio.emit('vehicle_update', {'latitude' : latitude, 'longitude' : longitude,
-                                                'route_id': route_id})
-            time.sleep(30)
+                            socketio.emit('vehicle_update', {
+                                'latitude' : latitude,
+                                'longitude' : longitude,
+                                'route_id': route_id,
+                                'vehicle_id': vehicle_id,
+                                'vehicle_status': vehicle_status})
+            time.sleep(5)
 
         except Exception as e:
             print(f"Error updating map: {e}")

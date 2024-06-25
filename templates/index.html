@@ -24,8 +24,9 @@
             console.log('Connected to SocketIO server');
         });
 
-        var markers = [];
+        var markers = {};
         var polylines = {};
+
 
         socket.on('vehicle_update', function(data) {
             console.log('Received vehicle update:', data);
@@ -33,24 +34,35 @@
             var latitude = data.latitude;
             var longitude = data.longitude;
             var route_id = data.route_id;
+            var vehicle_id = data.vehicle_id;
 
+            
+            
             // Add marker for vehicle
-            var marker = L.marker([latitude, longitude]).addTo(map);
-            marker.bindPopup(`Route ID: ${route_id}`);
-            markers.push(marker);
+            
+            if(markers[vehicle_id]){
+                markers[vehicle_id].setLatLng([latitude, longitude]);
+                
+            } else {
+                markers[vehicle_id] = L.marker([latitude, longitude]).addTo(map).bindPopup(`Route ID: ${route_id}`);
 
+            }
             // Add polylines for routes
             if (!polylines[route_id]) {
-                polylines[route_id] = [];
+                polylines[route_id] = {
+                    line: null,
+                    coordinates: []
+                
+                };
             }
-            polylines[route_id].push([latitude, longitude]);
+            polylines[route_id].coordinates.push([latitude, longitude]);
 
             // Remove previous polylines
-            for (var polyline_id in polylines) {
-                if (polylines.hasOwnProperty(polyline_id)) {
-                    var polyline = L.polyline(polylines[polyline_id], {color: 'blue'}).addTo(map);
-                }
+            if (polylines[route_id].line) {
+                    map.removeLayer(polylines[route_id].line);
             }
+            
+            polylines[route_id].line = L.polyline(polylines[route_id].coordinates, {color: 'yellow'}).addTo(map);
         });
     </script>
 </body>
