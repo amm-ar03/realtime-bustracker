@@ -47,4 +47,4 @@ if __name__ == "__main__":
             json_data = proto_to_json(data)
             if json_data:
                 save_data(json_data, 'gtfs_realtime.json')
-        time.sleep(30)
+        time.sleep(5)

@@ -7,7 +7,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
     <style>
-        #map { height: 600px; }
+        #map { height: 1000px; }
     </style>
 </head>
 <body>
@@ -36,7 +36,12 @@
             var route_id = data.route_id;
             var vehicle_id = data.vehicle_id;
 
-            
+            var busIcon = L.icon({
+                iconUrl: 'static/location.png',
+                iconSize: [28, 45],
+                iconAnchor: [22, 94],
+                
+            })
             
             // Add marker for vehicle
             
@@ -44,26 +49,35 @@
                 markers[vehicle_id].setLatLng([latitude, longitude]);
                 
             } else {
-                markers[vehicle_id] = L.marker([latitude, longitude]).addTo(map).bindPopup(`Route ID: ${route_id}`);
+                markers[vehicle_id] = L.marker([latitude, longitude], {icon: busIcon}).addTo(map).bindPopup(`Route ID: ${route_id}`);
 
             }
+            const myButton = document.getElementById('Button');
+            myButton.addEventListener('click', function() {
+                const route_id = '${route_id}';
+                const latitude = 48.476165;
+                const longitude = -123.332778;
+
             // Add polylines for routes
-            if (!polylines[route_id]) {
-                polylines[route_id] = {
-                    line: null,
-                    coordinates: []
+                if (!polylines[route_id]) {
+                    polylines[route_id] = {
+                        line: null,
+                        coordinates: []
                 
-                };
-            }
-            polylines[route_id].coordinates.push([latitude, longitude]);
+                    };
+                }
+        
+                polylines[route_id].coordinates.push([latitude, longitude]);
 
             // Remove previous polylines
-            if (polylines[route_id].line) {
+                if (polylines[route_id].line) {
                     map.removeLayer(polylines[route_id].line);
             }
             
             polylines[route_id].line = L.polyline(polylines[route_id].coordinates, {color: 'yellow'}).addTo(map);
+            });
         });
+    
     </script>
 </body>
 </html>
