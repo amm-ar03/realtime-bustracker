@@ -32,12 +32,14 @@ def emit_data():
                             route_id = vehicle.get('trip', {}).get('routeId', 'N/A')
                             vehicle_id = vehicle.get('vehicle', {}).get('id', 'UNKNOWN')
                             vehicle_status = vehicle.get('currentStatus', 'UNKNOWN')
+                            vehicle_seats = vehicle.get('occupancyStatus', 'UNKNOWN')
                             socketio.emit('vehicle_update', {
                                 'latitude' : latitude,
                                 'longitude' : longitude,
                                 'route_id': route_id,
                                 'vehicle_id': vehicle_id,
-                                'vehicle_status': vehicle_status})
+                                'vehicle_status': vehicle_status,
+                                'vehicle_seats': vehicle_seats})
             time.sleep(5)
 
         except Exception as e:
