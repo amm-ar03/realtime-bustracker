@@ -7,8 +7,8 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
     <style>
-        #map { height: 1000px; }
-        #selectBus { position: absolute; top: 10px; left: 10px; z-index: 1000; background: white; padding: 10px;}
+        #map { height: 810px; }
+        #selectBus { position: absolute; top: 10px; left: 70px; z-index: 1000; background: white; padding: 10px;}
     </style>
 </head>
 <body>
@@ -31,11 +31,29 @@
         });
 
         var markers = {};
-        var polylines = {};
-        var selectedVehicles = '';
+        
+        var selectedHeadsign = '';
+        var routeHeadsign = {};
+        var addedHeadsign = new Set();
 
-        var addedRoutes = new Set();
-        var addedVehicles = new Set();
+        document.getElementById('dropdown').addEventListener('change', function(e) {
+            selectedHeadsign = e.target.value;
+
+            for(var id in markers) {
+                if (markers.hasOwnProperty(id)) {
+                    map.removeLayer(markers[id]);
+                }
+            }
+            for(var vehicle_id in markers) {
+                var headsign = markers[vehicle_id].options.headsign;
+                //var headsign = routeHeadsign[route_id];
+                if(headsign === selectedHeadsign) {
+                    map.addLayer(markers[vehicle_id]);
+                    //map.setView(markers[vehicle_id].getLatLng(), 15);
+                }
+            }
+     
+        });
 
 
         socket.on('vehicle_update', function(data) {
@@ -46,95 +64,49 @@
             var route_id = data.route_id;
             var vehicle_id = data.vehicle_id;
             var vehicle_seats = data.vehicle_seats;
+            var vehicle_speed = data.vehicle_speed;
+            var headsign = data.headsign;
 
-            //check if route is already in the dropdown menu
-            //if not, adds a new route
-            if (!addedRoutes.has(route_id)){
+            var displayText = `${headsign} (${route_id})`;
+            
+            if(!addedHeadsign.has(displayText)){
                 var dropdown = document.getElementById('dropdown');
-                var optionGroup = document.createElement('optgroup');
-                
-                optionGroup.label = route_id;
-                dropdown.appendChild(optionGroup);
-                addedRoutes.add(route_id);
-                console.log(`Created new option group for route: ${route_id}`);
-            }
-
-            if (!addedVehicles.has(vehicle_id)){
-                var optionGroup = dropdown.querySelector(`optgroup[label="${route_id}"]`);
                 var option = document.createElement('option');
-                option.value = vehicle_id;
-                option.text = `Bus ${vehicle_id} (Route: ${route_id})`;
-                optionGroup.appendChild(option);
-                addedVehicles.add(vehicle_id);
-                console.log(`Added bus ID ${vehicle_id} to route ${route_id}`)
-            }
-            //custom bus icon and settings of icon
-            var busIcon = L.icon({
-                iconUrl: 'static/favicon-32.png',
-                iconSize: [20, 35],
-                iconAnchor: [25, 97],
-                popupAnchor: [-3, -80]
-                
-            })
-            
-            
-            // Add marker for vehicle
-            if(vehicle_id === selectedVehicles){
-                if(markers[vehicle_id]){
-                    markers[vehicle_id].setLatLng([latitude, longitude]);
-                
-                } else {
-                //adds marker of bus on certain location with popup giving info on route and seats
-                    markers[vehicle_id] = L.marker([latitude, longitude], {icon: busIcon}).addTo(map).bindPopup(`Route ID: ${route_id}<br>Occupancy Level: ${vehicle_seats}`);
+                option.value = headsign;
+                option.text = displayText;
+                dropdown.appendChild(option);
+                addedHeadsign.add(displayText);
+                console.log(`Created new option group for route: ${headsign}`);
 
                 }
+            
+            
+
+            // Add marker for vehicle
+            
+            if (!markers[vehicle_id]) {
+                var busIcon = L.icon({
+                    iconUrl: 'static/favicon-32.png',
+                    iconSize: [20, 29],
+                    iconAnchor: [10, 29],
+                    popupAnchor: [0, -29],
+                });
+
+                markers[vehicle_id] = L.marker([latitude, longitude], {
+                    icon: busIcon,
+                    headsign: headsign
+                }).bindPopup(`Route ID: ${route_id}<br>Headsign: ${headsign}<br>Occupancy Level: ${vehicle_seats}<br>Vehicle Speed: ${vehicle_speed}`);
+            } else {
+                markers[vehicle_id].setLatLng([latitude, longitude]);
+            }
+
+            // If the selected headsign is the same as the current one, ensure the marker is displayed
+            if (headsign === selectedHeadsign) {
+                map.addLayer(markers[vehicle_id]);
                 //map.setView([latitude, longitude], 15);
             }
-            // const myButton = document.getElementById('Button');
-            // myButton.addEventListener('click', function() {
-            //     const route_id = '${route_id}';
-            //     const latitude = 48.476165;
-            //     const longitude = -123.332778;
-
-            // // Add polylines for routes
-            //     if (!polylines[route_id]) {
-            //         polylines[route_id] = {
-            //             line: null,
-            //             coordinates: []
-                
-            //         };
-            //     }
+    });
         
-            //     polylines[route_id].coordinates.push([latitude, longitude]);
-
-            // // Remove previous polylines
-            //     if (polylines[route_id].line) {
-            //         map.removeLayer(polylines[route_id].line);
-            // }
-            
-            // polylines[route_id].line = L.polyline(polylines[route_id].coordinates, {color: 'yellow'}).addTo(map);
-            // });
-
-            document.getElementById('dropdown').addEventListener('change', function(e) {
-                selectedVehicles = e.target.value;
-
-                for(var id in markers) {
-                    if (markers.hasOwnProperty(id)) {
-                        map.removeLayer(markers[id]);
-                    }
-                }
-                for (var routeId in polylines) {
-                    if (polylines.hasOwnProperty(routeId) && polylines[routeId].line) {
-                        map.removeLayer(polylines[routeId].line);
-                    }
-                }
-                if(selectedVehicles &&  markers[selectedVehicles]) {
-                    map.addLayer(markers[selectedVehicles]);
-                   // map.setView(markers[selectedVehicles].getLatLng(), 15);
-                }
-
-            });
-        });
     
     </script>
 </body>
