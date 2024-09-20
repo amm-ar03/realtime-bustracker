@@ -7,7 +7,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
     <style>
-        #map { height: 810px; }
+        #map { height: 850px; }
         #selectBus { position: absolute; top: 10px; left: 70px; z-index: 1000; background: white; padding: 10px;}
     </style>
 </head>
@@ -45,10 +45,12 @@
                 }
             }
             for(var vehicle_id in markers) {
-                var headsign = markers[vehicle_id].options.headsign;
+                var markerHeadsign = markers[vehicle_id].options.headsign;
+                var marker = markers[vehicle_id];
                 //var headsign = routeHeadsign[route_id];
-                if(headsign === selectedHeadsign) {
-                    map.addLayer(markers[vehicle_id]);
+                if(markerHeadsign === selectedHeadsign) {
+                    map.addLayer(marker);
+
                     //map.setView(markers[vehicle_id].getLatLng(), 15);
                 }
             }
@@ -79,6 +81,28 @@
                 console.log(`Created new option group for route: ${headsign}`);
 
                 }
+            // var myLayer = L.geoJSON(geojsonFeature).addTo(map);
+            // myLayer.addData(geojsonFeature);
+
+            var myLines = [{
+                "type": "LineString",
+                "coordinates": [[-123.36518,48.42555], [-123.36535,48.42466], [-123.36458,48.4245]]
+            }, {
+                "type": "LineString",
+                "coordinates": [[-123.3625,48.42433], [-123.36183,48.42417],[-123.35973,48.42402]]
+            }];
+
+            var myStyle = {
+                "color": "#ff7800",
+                "weight": 5,
+                "opacity": 0.65
+            };
+
+            L.geoJSON(myLines, {
+             style: myStyle
+            }).addTo(map);
+
+            
             
             
 
@@ -101,7 +125,7 @@
             }
 
             // If the selected headsign is the same as the current one, ensure the marker is displayed
-            if (headsign === selectedHeadsign) {
+            if (displayText === selectedHeadsign) {
                 map.addLayer(markers[vehicle_id]);
                 //map.setView([latitude, longitude], 15);
             }
