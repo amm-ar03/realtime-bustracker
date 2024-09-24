@@ -11,9 +11,9 @@ socketio = SocketIO(app)
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-with open('routes1.json', 'r') as json_file:
+with open('routes.json', 'r') as json_file:
     routes_data = json.load(json_file)
-    routes_dict = {route['properties']['route_id']: route['properties']['headsign'] for route in routes_data if 'properties' in route}
+    routes_dict = {route['route_id']: route['headsign'] for route in routes_data}
 
 @app.route('/')
 def index():
