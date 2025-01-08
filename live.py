@@ -62,6 +62,8 @@ def emit_data():
                                 'vehicle_speed': vehicle_speed,
                                 'headsign' : headsign
                                 })
+            
+            
                             
             # with open('routes.json', 'r') as json_file:
             #     data_route = json.load(json_file)
