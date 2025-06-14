@@ -26,8 +26,11 @@
 
 <body>
     <div id="selectBus">
-        <select id="dropdown">
-            <option value="">Select a bus</option>
+        <select id="routeDropdown">
+            <option value="">Select a route</option>
+        </select>
+        <select id="headsignDropdown">
+            <option value="">Select a headsign</option>
         </select>
     </div>
     <div id="map"></div>
@@ -39,88 +42,74 @@
 
         var socket = io.connect('http://' + document.domain + ':' + location.port);
 
-        socket.on('connect', function () {
-            console.log('Connected to SocketIO server');
+        var markers = {};
+        var polylineLayers = {};
+        var selectedHeadsign = '';
+        var routeToHeadsigns = {};
+
+        // Organize route to headsigns from GeoJSON
+        routes_polyline.features.forEach(feature => {
+            const { route_id, headsign } = feature.properties;
+            if (!routeToHeadsigns[route_id]) {
+                routeToHeadsigns[route_id] = new Set();
+            }
+            routeToHeadsigns[route_id].add(headsign);
         });
 
-        var markers = {};
+        // Populate route dropdown
+        const routeDropdown = document.getElementById("routeDropdown");
+        for (let route_id in routeToHeadsigns) {
+            let option = document.createElement("option");
+            option.value = route_id;
+            option.text = route_id;
+            routeDropdown.appendChild(option);
+        }
 
-        var selectedHeadsign = '';
-        var routeHeadsign = {};
-        var addedHeadsign = new Set();
-        var polylineLayers = {};
+        // Populate headsigns on route selection
+        routeDropdown.addEventListener("change", function (e) {
+            const selectedRoute = e.target.value;
+            const headsigns = Array.from(routeToHeadsigns[selectedRoute] || []);
 
-        document.getElementById('dropdown').addEventListener('change', function (e) {
+            const headsignDropdown = document.getElementById("headsignDropdown");
+            headsignDropdown.innerHTML = '<option value="">Select a headsign</option>';
+
+            headsigns.forEach(h => {
+                let opt = document.createElement("option");
+                opt.value = h;
+                opt.text = h;
+                headsignDropdown.appendChild(opt);
+            });
+        });
+
+        document.getElementById("headsignDropdown").addEventListener("change", function (e) {
             selectedHeadsign = e.target.value;
 
-            for (var id in markers) {
-                if (markers.hasOwnProperty(id)) {
-                    map.removeLayer(markers[id]);
-                }
-            }
-            for (var vehicle_id in markers) {
-                var markerHeadsign = markers[vehicle_id].options.headsign;
-                var marker = markers[vehicle_id];
-                //var headsign = routeHeadsign[route_id];
-                if (markerHeadsign === selectedHeadsign) {
-                    map.addLayer(marker);
-
-                    //map.setView(markers[vehicle_id].getLatLng(), 15);
-                }
-            }
-
-        });
-
-
-        socket.on('vehicle_update', function (data) {
-            console.log('Received vehicle update:', data);
-
-            var latitude = data.latitude;
-            var longitude = data.longitude;
-            var route_id = data.route_id;
-            var vehicle_id = data.vehicle_id;
-            var vehicle_seats = data.vehicle_seats;
-            var vehicle_speed = data.vehicle_speed;
-            var headsign = data.headsign;
-
-            var displayText = `${headsign} (${route_id})`;
-
-            if (!addedHeadsign.has(displayText)) {
-                var dropdown = document.getElementById('dropdown');
-                var option = document.createElement('option');
-                option.value = headsign;
-                option.text = displayText;
-                dropdown.appendChild(option);
-                addedHeadsign.add(displayText);
-                console.log(`Created new option group for route: ${headsign}`);
-
-            }
-
-            
-            // Show only the selected polyline when the dropdown changes
-            document.getElementById('dropdown').addEventListener('change', function (e) {
-                const selectedHeadsign = e.target.value;
-
-                // Remove all polylines
-                Object.values(polylineLayers).forEach(layer => map.removeLayer(layer));
-
-                // Add only the selected polyline
-                if (polylineLayers[selectedHeadsign]) {
-                    map.addLayer(polylineLayers[selectedHeadsign]);
+            // Add selected polyline
+            routes_polyline.features.forEach(feature => {
+                const { headsign } = feature.properties;
+                if (headsign === selectedHeadsign) {
+                    //const polyline = L.geoJSON(feature).addTo(map);
+                    polylineLayers[headsign] = polyline;
                 }
             });
 
+            // Remove all markers and polylines
+            Object.values(markers).forEach(m => map.removeLayer(m));
+            Object.values(polylineLayers).forEach(p => map.removeLayer(p));
+        });
 
-            // Add marker for vehicle
+
+        
+        socket.on('vehicle_update', function (data) {
+            const { latitude, longitude, route_id, vehicle_id, vehicle_seats, vehicle_speed, headsign } = data;
 
             if (!markers[vehicle_id]) {
-                var busIcon = L.icon({
+                const busIcon = L.icon({
                     iconUrl: 'static/favicon-32.png',
                     iconSize: [20, 29],
                     iconAnchor: [10, 29],
                     popupAnchor: [0, -29],
                 });
-
 
                 markers[vehicle_id] = L.marker([latitude, longitude], {
                     icon: busIcon,
@@ -128,18 +117,16 @@
                 }).bindPopup(`Route ID: ${route_id}<br>Headsign: ${headsign}<br>Occupancy Level: ${vehicle_seats}<br>Vehicle Speed: ${vehicle_speed}`);
             } else {
                 markers[vehicle_id].setLatLng([latitude, longitude]);
-
             }
 
-            // If the selected headsign is the same as the current one, ensure the marker is displayed
-            if (displayText === selectedHeadsign) {
+            if (headsign === selectedHeadsign) {
                 map.addLayer(markers[vehicle_id]);
-                //map.setView([latitude, longitude], 15);
+            } else {
+                map.removeLayer(markers[vehicle_id]);
+                Object.values(polylineLayers).forEach(p => map.removeLayer(p));
+
             }
         });
-
-
-
     </script>
 </body>
 
