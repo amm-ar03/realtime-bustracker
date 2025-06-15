@@ -42,23 +42,186 @@
 
         var socket = io.connect('http://' + document.domain + ':' + location.port);
 
+
+        const headsignDirectionMap = {
+            "Langford Exch": 0,
+            "Thetis Heights via McCallum": 0,
+            "Blink - to Langford": 1,
+            "Royal Oak Exch via Royal Oak Ctr": 0,
+            "Downtown": 1,
+            "UVic via Richmond": 0,
+            "Sidney via West Saanich": 0,
+            "Swartz Bay Ferry via Saanichton": 0,
+            "Langford Exch via McCallum": 1,
+            "UVic via Hillside": 0,
+            "Vic General via Straw Vale": 0,
+            "Dockyard via McKenzie/Tillicum": 1,
+            "Sooke": 1,
+            "Interurban to Camosun only": 0,
+            "Butchart Gardens": 0,
+            "Royal Jubilee via Quimper Loop": 1,
+            "UVic via Cook St Village": 1,
+            "Hillside Ctr via Hastings": 1,
+            "Vic General via Atkins": 0,
+            "Downtown via Saanichton": 1,
+            "Tillicum Ctr via Colville": 1,
+            "Royal Oak Exch via Emily Carr": 0,
+            "Brentwood": 1,
+            "Blink - to Downtown": 0,
+            "Sidney": 0,
+            "Willows": 0,
+            "Majestic via Shelbourne": 0,
+            "Royal Oak Exch via Carey": 0,
+            "James Bay": 0,
+            "Langford Exch via Happy Valley": 0,
+            "Oak Bay via Finlayson": 0,
+            "UVic via Fairfield": 1,
+            "South Oak Bay": 0,
+            "Maplewood": 0,
+            "Interurban via Finlayson": 1,
+            "Westhills Exch via Royal Oak": 1,
+            "Swartz Bay Ferry via Hwy 17": 0,
+            "Royal Oak Exch via Glanford": 0,
+            "Tillicum Ctr via Gorge": 1,
+            "Goldstream Mdws via Westhills": 1,
+            "Royal Jubilee": 1,
+            "to Sidney only": 0,
+            "Cordova Bay": 0,
+            "Royal Oak Exch - to 30 Downtown": 1,
+            "Downtown via Emily Carr": 1,
+            "Royal Jubilee via Vic West": 0,
+            "UVic - Fort/Foul Bay Express": 0,
+            "Downtown via Hillside": 1,
+            "Saanichton Exch": 0,
+            "Tillicum Ctr via Finalyson": 1,
+            "James Bay via Quimper Loop": 0,
+            "Vic General via Craigflower": 1,
+            "Downtown via Hwy 17": 1,
+            "Royal Oak Exch": 1,
+            "Interurban to VI Tech Park": 0,
+            "UVic via Royal Oak": 0,
+            "Langford - McKenzie Express": 1,
+            "Belmont Park - Royal Roads": 0,
+            "Vic General via Hastings": 0,
+            "Airport": 1,
+            "to Royal Oak Exch only": 1,
+            "UVic via Tillicum/McKenzie": 0,
+            "Otter Point": 1,
+            "Skirt Mountain via Florence Lake": 0,
+            "Langford Exch via Royal Bay": 0,
+            "Royal Bay Exch via Triangle Mtn": 1,
+            "Gordon Head via Shelbourne": 0,
+            "UVic via Cedar Hill Sch": 0,
+            "UVic via Uplands": 0,
+            "Downtown via Chatterton": 1,
+            "Colwood Exch via Royal Bay": 0,
+            "Tillicum Ctr via Munro": 1,
+            "Langford Exch via Lagoon": 0,
+            "Langford Exch via Florence Lake": 1,
+            "Bear Mountain via Millstream": 1,
+            "Interurban to Viaduct Loop": 0,
+            "Esquimalt - Fort/Yates Express": 1,
+            "North Saanich": 0,
+            "Swartz Bay Ferry": 0,
+            "Langford Exch via Westhills": 0,
+            "UVic via Kenmore": 0,
+            "Langford Exch via Atkins": 1,
+            "Sooke via East Sooke": 1,
+            "UVic - McKenzie Express": 0,
+            "Night Rte to Camosun via Straw Vale": 0,
+            "William Head via Metchosin": 1,
+            "Langford Exch via Triangle Mtn": 0,
+            "Cedar Hill": 0,
+            "Langford - Jacklin/Station": 0,
+            "William Head via Happy Valley": 1,
+            "Dockyard": 0,
+            "University Hgts via Kenmore": 1,
+            "Goldstream Mdws via Thetis Hgts": 1,
+            "Westhills Exch": 1,
+            "to McKenzie only": 1,
+            "Ridge": 0,
+            "Dean Park via Airport to Saanichton": 1,
+            "to Downtown only": 0,
+            "to Gorge only via Hwy 17": 1,
+            "Saanichton Exch via Stautw": 1,
+            "Majestic - Shelbourne Express": 0,
+            "Express to Victoria": 1,
+            "James Bay via Linden": 0,
+            "Downtown via Westhills": 0,
+            "to Downtown only via Hastings": 1,
+            "to 17 Mile House": 1,
+            "Royal Oak Exch via Chatterton": 0,
+            "to Hillside only": 0,
+            "Royal Oak Exch via West Saanich": 1,
+            "Interurban via Royal Oak": 1,
+            "South Oak Bay via Richardson": 0,
+            "Downtown - to 7 UVic": 0,
+            "to Westhills Exch only": 1,
+            "Express to Gorge only": 1,
+            "Happy Valley via Colwood": 1,
+            "Downtown - Shelbourne Express": 0,
+            "to Lands End Rd via Saanichton": 0,
+            "East Sooke": 0,
+            "Esquimalt": 1,
+            "to Gorge only": 1,
+            "Sooke via Westhills": 1,
+            "Hillside Ctr via Straw Vale": 1,
+            "Swartz Bay Ferry via West Sidney": 0,
+            "James Bay - Fisherman's Wharf": 1,
+            "to Downtown only via Straw Vale": 1,
+            "Sidney via Stautw": 0,
+            "to Spectrum School": 0,
+            "Royal Oak Exch - to 31 Downtown": 1,
+            "to Douglas only via Hillside": 1,
+            "Downtown via West Sidney": 1,
+            "to Saanichton Exch only": 1,
+            "Langford Exch via East Sooke": 0,
+            "Royal Oak Exch via Hillside/Gorge": 1,
+            "to Uptown only - Blanshard St": 1,
+            "to Vic West only": 1,
+            "Shoreline Sch via Munro": 1,
+            "Downtown via Atkins": 0,
+            "to 17 Mile House via East Sooke": 1,
+            "Downtown via Quadra": 1,
+            "to Royal Bay Exch only": 1,
+            "UVic via Gorge/Hillside": 0,
+            "to Brentwood via Stautw": 1,
+            "to Jutland only via Hillside/Gorge": 1,
+            "to Uptown only - Douglas St": 1,
+            "James Bay via Vic West": 1,
+            "Downtown - to 21 Interurban": 0,
+            "Royal Bay Exch via Lagoon": 1,
+            "Vic General - Watkiss Way via Hastings": 0,
+            "Vic General - Watkiss Way via S. Vale": 0,
+            "Admirals Walk via Munro": 1,
+        };
         var markers = {};
         var polylineLayers = {};
         var selectedHeadsign = '';
-        var routeToHeadsigns = {};
+        var routeToDirections = {};
+        let selectedRouteId = '';
+        let selectedDirectionId = null;
+
 
         // Organize route to headsigns from GeoJSON
         routes_polyline.features.forEach(feature => {
             const { route_id, headsign } = feature.properties;
-            if (!routeToHeadsigns[route_id]) {
-                routeToHeadsigns[route_id] = new Set();
+            const direction_id = headsignDirectionMap[headsign.trim()];
+
+            if(direction_id == undefined) {
+                console.warn(`Missing direction id for headsign: "${headsign}"`);
             }
-            routeToHeadsigns[route_id].add(headsign);
+            feature.properties.direction_id = direction_id;
+
+            if (!routeToDirections[route_id]) {
+                routeToDirections[route_id] = {};
+            }
+            routeToDirections[route_id][direction_id] = headsign;
         });
 
         // Populate route dropdown
         const routeDropdown = document.getElementById("routeDropdown");
-        for (let route_id in routeToHeadsigns) {
+        for (let route_id in routeToDirections) {
             let option = document.createElement("option");
             option.value = route_id;
             option.text = route_id;
@@ -67,41 +230,47 @@
 
         // Populate headsigns on route selection
         routeDropdown.addEventListener("change", function (e) {
-            const selectedRoute = e.target.value;
-            const headsigns = Array.from(routeToHeadsigns[selectedRoute] || []);
+            selectedRouteId = e.target.value;
+            const headsigns = routeToDirections[selectedRouteId];
 
             const headsignDropdown = document.getElementById("headsignDropdown");
             headsignDropdown.innerHTML = '<option value="">Select a headsign</option>';
 
-            headsigns.forEach(h => {
+            for (let direction_id in headsigns) {
                 let opt = document.createElement("option");
-                opt.value = h;
-                opt.text = h;
+                opt.value = direction_id;
+                opt.text = headsigns[direction_id];
                 headsignDropdown.appendChild(opt);
-            });
+            }
         });
+
 
         document.getElementById("headsignDropdown").addEventListener("change", function (e) {
-            selectedHeadsign = e.target.value;
+            selectedDirectionId = parseInt(e.target.value);
 
-            // Add selected polyline
-            routes_polyline.features.forEach(feature => {
-                const { headsign } = feature.properties;
-                if (headsign === selectedHeadsign) {
-                    //const polyline = L.geoJSON(feature).addTo(map);
-                    polylineLayers[headsign] = polyline;
-                }
-            });
-
-            // Remove all markers and polylines
+            // Clear old markers/polylines
             Object.values(markers).forEach(m => map.removeLayer(m));
             Object.values(polylineLayers).forEach(p => map.removeLayer(p));
+            polylineLayers = {};
+
+            // Draw selected polyline
+            routes_polyline.features.forEach(feature => {
+                const props = feature.properties;
+                if (props.route_id === selectedRouteId && props.direction_id === selectedDirectionId) {
+                    //const polyline = L.geoJSON(feature).addTo(map);
+                    polylineLayers[props.route_id + '_' + props.direction_id] = polyline;
+                }
+            });
         });
 
 
-        
+
         socket.on('vehicle_update', function (data) {
-            const { latitude, longitude, route_id, vehicle_id, vehicle_seats, vehicle_speed, headsign } = data;
+            console.log("Vehicle update received:", data)
+            const {
+                latitude, longitude, route_id, vehicle_id,
+                vehicle_seats, vehicle_speed, direction_id
+            } = data;
 
             if (!markers[vehicle_id]) {
                 const busIcon = L.icon({
@@ -112,19 +281,22 @@
                 });
 
                 markers[vehicle_id] = L.marker([latitude, longitude], {
-                    icon: busIcon,
-                    headsign: headsign
-                }).bindPopup(`Route ID: ${route_id}<br>Headsign: ${headsign}<br>Occupancy Level: ${vehicle_seats}<br>Vehicle Speed: ${vehicle_speed}`);
+                    icon: busIcon
+                }).bindPopup(
+                    `Route ID: ${route_id}<br>Direction: ${direction_id}<br>Occupancy Level: ${vehicle_seats}<br>Vehicle Speed: ${vehicle_speed}`
+                );
             } else {
                 markers[vehicle_id].setLatLng([latitude, longitude]);
             }
 
-            if (headsign === selectedHeadsign) {
+
+            if (
+                route_id === selectedRouteId &&
+                direction_id === selectedDirectionId
+            ) {
                 map.addLayer(markers[vehicle_id]);
             } else {
                 map.removeLayer(markers[vehicle_id]);
-                Object.values(polylineLayers).forEach(p => map.removeLayer(p));
-
             }
         });
     </script>
