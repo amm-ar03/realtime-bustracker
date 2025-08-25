@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Live Bus Tracking</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="static/dropdown.css">
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
     <script src="static/routes_polyline.js"></script>
-    <script src="static/tripIdMap.js"></script>
+    <script src="static/tripMaps.js"></script>
 
     <style>
         #map {
@@ -27,7 +29,7 @@
 </head>
 
 <body>
-    <div id="selectBus">
+    <div id="selectBus" class="green-theme">
         <select id="routeDropdown">
             <option value="">Select a route</option>
         </select>
@@ -42,19 +44,25 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        const socket = io.connect('http://' + document.domain + ':' + location.port);
 
+        //socket.onAny((ev, data) => console.log('[onAny]', ev, data));
+        //socket.on('connect', () => console.log('[socket] connected'));
+        //socket.on('vehicle_update', d => console.log('[vehicle_update]', d));
+
+        //socket.on('vehicle_tick', d => console.log('[tick]', d));
 
 
         var markers = {};
         var polylineLayers = {};
         var selectedHeadsign = '';
-        var routeToDirections = {};
+        //var routeToDirections = {};
         let selectedRouteId = '';
         let selectedDirectionId = null;
 
 
         // Organize route to headsigns from GeoJSON
+        /*
         routes_polyline.features.forEach(feature => {
             const { route_id, headsign } = feature.properties;
 
@@ -74,6 +82,7 @@
 
             if (!tripEntry) {
                 console.warn(`Missing direction ID for headsign "${headsign}" and route "${route_id}"`);
+                //return;
                 return;
             }
 
@@ -85,30 +94,67 @@
             }
             routeToDirections[route_id][direction_id] = headsign;
         });
+        */
+        function norm(s) {
+            return (s || "").toLowerCase()
+                .replace(/[-]/g, "")            // remove dashes
+                .replace(/\s+/g, " ")         // normalize spaces
+                //.replace(/via/g, '')          // optionally remove "via"
+                .trim();
+        }
+
+        function resolveDir(route_id, rawHeadsign) {
+            const table = headsignDirMajority[route_id];
+            if (!table) return null;
+            const n = norm(rawHeadsign);
+            if (table[n]) return table[n].dir;
+
+            //soft fallback 
+            const nNoVia = n.replace(/\s*-\s*via .*$/i, "");
+            if (table[nNoVia]) return table[nNoVia].dir;
+
+            const nNoOnly = n.replace(/\s+only$/i, "");
+            if (table[nNoOnly]) return table[nNoOnly].dir;
+
+            return null;
+        }
+
+        routes_polyline.features.forEach(feature => {
+            const p = feature.properties || {};
+            if (!p.route_id || !p.headsign) return;
+            const d = resolveDir(p.route_id, p.headsign);
+            if (d !== null) p.direction_id = d
+        });
 
         // Populate route dropdown
         const routeDropdown = document.getElementById("routeDropdown");
-        for (let route_id in routeToDirections) {
-            let option = document.createElement("option");
+        routeDropdown.innerHTML = '<option value="">Select a route</option>';
+        Object.keys(routeToDirections).sort().forEach(route_id => {
+            const option = document.createElement("option");
             option.value = route_id;
-            option.text = route_id;
+            option.textContent = route_id;
             routeDropdown.appendChild(option);
-        }
+        });
 
         // Populate headsigns on route selection
-        routeDropdown.addEventListener("change", function (e) {
+        routeDropdown.addEventListener("change", e => {
             selectedRouteId = e.target.value;
-            const headsigns = routeToDirections[selectedRouteId];
+            //const headsigns = routeToDirections[selectedRouteId];
 
             const headsignDropdown = document.getElementById("headsignDropdown");
             headsignDropdown.innerHTML = '<option value="">Select a headsign</option>';
 
-            for (let direction_id in headsigns) {
-                let opt = document.createElement("option");
-                opt.value = direction_id;
-                opt.text = headsigns[direction_id];
-                headsignDropdown.appendChild(opt);
-            }
+            const dirs = routeToDirections[selectedRouteId] || {};
+
+            Object.keys(dirs).sort().forEach(dir => {
+                dirs[dir].forEach(headsign => {
+                    const option = document.createElement("option");
+                    option.value = dir;
+                    option.textContent = headsign;
+                    headsignDropdown.appendChild(option);
+                });
+            });
+
         });
 
 
@@ -121,6 +167,7 @@
 
             //Remove all existing markers
             Object.values(markers).forEach(m => map.removeLayer(m));
+
 
             //Draw polyline(s) for the selected route + direction
             let key = `${selectedRouteId}_${selectedDirectionId}`;
@@ -138,17 +185,20 @@
 
 
         socket.on('vehicle_update', function (data) {
-            console.log("Vehicle update received:", data)
             const {
                 latitude, longitude, vehicle_id,
                 vehicle_seats, vehicle_speed, trip_id
             } = data;
-            console.log("Received trip_id:", trip_id);
-            console.log("Known trip_ids:", Object.keys(tripIdMap).slice(0, 10)); // Just show some
+            if (latitude == null || longitude == null || !vehicle_id) {
+                console.warn('[BUS] missing basics', { latitude, longitude, vehicle_id });
+                return;
+            }
+            //console.log("Known trip_ids:", Object.keys(tripIdMap).slice(0, 10)); // Just show some
+
 
             const tripInfo = tripIdMap[trip_id];
             if (!tripInfo) {
-                console.warn("Trip ID not found in IDMap", trip_id);
+                //console.warn("Trip ID not found in IDMap", trip_id);
                 return;
             }
 
@@ -156,6 +206,7 @@
             const route_id = tripInfo.route_id;
             const direction_id = tripInfo.direction_id;
             const headsign = tripInfo.headsign;
+
 
             if (!markers[vehicle_id]) {
                 const busIcon = L.icon({
@@ -175,7 +226,6 @@
                 markers[vehicle_id].setPopupContent(`Headsign: ${headsign}<br>Direction: ${direction_id}<br>Occupancy Level: ${vehicle_seats}<br>Vehicle Speed: ${vehicle_speed}`);
             }
 
-
             if (
                 route_id === selectedRouteId &&
                 direction_id === selectedDirectionId
@@ -185,6 +235,7 @@
                 map.removeLayer(markers[vehicle_id]);
             }
         });
+
     </script>
 </body>
 
