@@ -7,14 +7,15 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="static/dropdown.css">
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
     <script src="static/routes_polyline.js"></script>
     <script src="static/tripMaps.js"></script>
-
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-32.png') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         #map {
-            height: 850px;
+            height: 100vh;
+            width: 100vw;
         }
 
         #selectBus {
@@ -39,7 +40,11 @@
     </div>
     <div id="map"></div>
     <script>
-        var map = L.map('map').setView([48.476165, -123.332778], 12);
+        var map = L.map('map', {
+            zoomControl: true,
+            tap: true
+        }).setView([48.476165, -123.332778], 12);
+
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
@@ -102,6 +107,16 @@
                 //.replace(/via/g, '')          // optionally remove "via"
                 .trim();
         }
+
+        function onLocationFound(e) {
+            const radius = e.accuracy;
+
+            L.marker(e.latlng).addTo(map)
+                .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+            L.circle(e.latlng, radius).addTo(map);
+        }
+        map.on('locationfound', onLocationFound);
 
         function resolveDir(route_id, rawHeadsign) {
             const table = headsignDirMajority[route_id];
@@ -212,6 +227,8 @@
                 const busIcon = L.icon({
                     iconUrl: 'static/favicon-32.png',
                     iconSize: [20, 29],
+                    //iconUrl: "{{ url_for('static', filename='favicon-32.png') }}",
+                    //iconRetinaUrl: "{{ url_for('static', filename='favicon-32.png') }}",
                     iconAnchor: [10, 29],
                     popupAnchor: [0, -29],
                 });
