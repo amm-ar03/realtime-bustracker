@@ -204,54 +204,62 @@
                 latitude, longitude, vehicle_id,
                 vehicle_seats, vehicle_speed, trip_id
             } = data;
-            if (latitude == null || longitude == null || !vehicle_id) {
-                console.warn('[BUS] missing basics', { latitude, longitude, vehicle_id });
-                return;
-            }
-            //console.log("Known trip_ids:", Object.keys(tripIdMap).slice(0, 10)); // Just show some
+
+            if (latitude == null || longitude == null || !vehicle_id) return;
 
 
             const tripInfo = tripIdMap[trip_id];
-            if (!tripInfo) {
-                //console.warn("Trip ID not found in IDMap", trip_id);
-                return;
-            }
 
+            if (!tripInfo) return; // IMPORTANT: don’t create markers without trip info
 
             const route_id = tripInfo.route_id;
             const direction_id = tripInfo.direction_id;
             const headsign = tripInfo.headsign;
 
-
             if (!markers[vehicle_id]) {
                 const busIcon = L.icon({
-                    iconUrl: 'static/favicon-32.png',
+                    iconUrl: '/static/favicon-32.png',
                     iconSize: [20, 29],
-                    //iconUrl: "{{ url_for('static', filename='favicon-32.png') }}",
-                    //iconRetinaUrl: "{{ url_for('static', filename='favicon-32.png') }}",
                     iconAnchor: [10, 29],
                     popupAnchor: [0, -29],
                 });
 
-                markers[vehicle_id] = L.marker([latitude, longitude], {
-                    icon: busIcon
-                }).bindPopup(
-                    `Headsign: ${headsign}<br>Direction: ${direction_id}<br>Occupancy Level: ${vehicle_seats}<br>Vehicle Speed: ${vehicle_speed}`
-                );
+                markers[vehicle_id] = L.marker([latitude, longitude], { icon: busIcon })
+                    .bindPopup(
+                        `Headsign: ${headsign}<br>
+                 Direction: ${direction_id}<br>
+                 Occupancy: ${vehicle_seats}<br>
+                 Speed: ${vehicle_speed}`
+                    );
             } else {
                 markers[vehicle_id].setLatLng([latitude, longitude]);
-                markers[vehicle_id].setPopupContent(`Headsign: ${headsign}<br>Direction: ${direction_id}<br>Occupancy Level: ${vehicle_seats}<br>Vehicle Speed: ${vehicle_speed}`);
             }
 
+            console.log("FILTER CHECK", {
+                vehicle_id,
+                route_id,
+                direction_id,
+                selectedRouteId,
+                selectedDirectionId,
+                routeMatch: route_id === selectedRouteId,
+                dirMatch: direction_id === selectedDirectionId,
+                routeTypes: [typeof route_id, typeof selectedRouteId],
+                dirTypes: [typeof direction_id, typeof selectedDirectionId]
+            });
+            // ONLY show marker if it matches selection
             if (
                 route_id === selectedRouteId &&
                 direction_id === selectedDirectionId
             ) {
-                map.addLayer(markers[vehicle_id]);
+                markers[vehicle_id].addTo(map);
             } else {
                 map.removeLayer(markers[vehicle_id]);
             }
+
+
+
         });
+
 
     </script>
 </body>
