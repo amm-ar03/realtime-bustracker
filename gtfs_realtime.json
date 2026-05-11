@@ -2,6 +2,2867 @@
   "header": {
     "gtfsRealtimeVersion": "1.0",
     "incrementality": "FULL_DATASET",
-    "timestamp": "1749989303"
-  }
+    "timestamp": "1767322194"
+  },
+  "entity": [
+    {
+      "id": "0",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332493:11435992:11459788",
+          "startTime": "18:23:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "5-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.417603,
+          "longitude": -123.372696,
+          "bearing": 19.3,
+          "odometer": 98759.0,
+          "speed": 7.77
+        },
+        "currentStopSequence": 32,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322176",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100008",
+        "vehicle": {
+          "id": "3131359371",
+          "label": "3131359371"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "1",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332579:11426895:11461345",
+          "startTime": "19:16:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "25-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.468754,
+          "longitude": -123.36077,
+          "odometer": 214972.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322187",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100921",
+        "vehicle": {
+          "id": "3131359452",
+          "label": "3131359452"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "2",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332079:11440217:11461981",
+          "startTime": "17:56:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "72-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.614594,
+          "longitude": -123.41582,
+          "bearing": 356.6,
+          "odometer": 161431.0,
+          "speed": 10.83
+        },
+        "currentStopSequence": 38,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322189",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102136",
+        "vehicle": {
+          "id": "3131359549",
+          "label": "3131359549"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "3",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333301:11455928:11464001",
+          "startTime": "18:40:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "11-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.450474,
+          "longitude": -123.307785,
+          "bearing": 225.0,
+          "odometer": 158879.0,
+          "speed": 13.33
+        },
+        "currentStopSequence": 16,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322189",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101005",
+        "vehicle": {
+          "id": "3131357512",
+          "label": "3131357512"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "4",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333208:11422966:11462428",
+          "startTime": "18:58:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "26-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.42766,
+          "longitude": -123.427925,
+          "odometer": 177672.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322173",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100698",
+        "vehicle": {
+          "id": "3131357511",
+          "label": "3131357511"
+        }
+      }
+    },
+    {
+      "id": "5",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332080:11425479:11462646",
+          "startTime": "18:27:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "72-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.63012,
+          "longitude": -123.41291,
+          "bearing": 275.5,
+          "odometer": 192998.0,
+          "speed": 3.05
+        },
+        "currentStopSequence": 24,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322188",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102038",
+        "vehicle": {
+          "id": "3131359512",
+          "label": "3131359512"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "6",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333297:11427538:11462070",
+          "startTime": "18:20:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "11-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.429657,
+          "longitude": -123.3297,
+          "odometer": 11787.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 38,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322191",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100427",
+        "vehicle": {
+          "id": "3131359404",
+          "label": "3131359404"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "7",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333194:11413609:11463233",
+          "startTime": "18:27:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "26-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.451897,
+          "longitude": -123.382065,
+          "odometer": 131710.0,
+          "speed": 0.27
+        },
+        "currentStopSequence": 23,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322187",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100538",
+        "vehicle": {
+          "id": "3131359358",
+          "label": "3131359358"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "8",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332373:11405853:11464772",
+          "startTime": "18:32:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "28-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.445072,
+          "longitude": -123.33343,
+          "odometer": 42870.0,
+          "speed": 1.38
+        },
+        "currentStopSequence": 25,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100590",
+        "vehicle": {
+          "id": "3131359431",
+          "label": "3131359431"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "9",
+      "vehicle": {
+        "trip": {
+          "tripId": "11338547:10029071:11460205",
+          "startTime": "18:44:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "85-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.59906,
+          "longitude": -123.39681,
+          "bearing": 184.9,
+          "odometer": 97978.0,
+          "speed": 9.44
+        },
+        "currentStopSequence": 2,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322186",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101542",
+        "vehicle": {
+          "id": "3131354203",
+          "label": "3131354203"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "10",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333163:11438148:11464436",
+          "startTime": "18:48:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "26-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.468647,
+          "longitude": -123.321236,
+          "odometer": 188193.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 3,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322194",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101043",
+        "vehicle": {
+          "id": "3131359480",
+          "label": "3131359480"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "11",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333347:11409155:11461770",
+          "startTime": "18:37:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "88-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.64448,
+          "longitude": -123.40878,
+          "bearing": 91.0,
+          "odometer": 139101.0,
+          "speed": 15.83
+        },
+        "currentStopSequence": 9,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322193",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102248",
+        "vehicle": {
+          "id": "3131354248",
+          "label": "3131354248"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "12",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333224:11448007:11462019",
+          "startTime": "18:18:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "26-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.468555,
+          "longitude": -123.321106,
+          "odometer": 191843.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 41,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322194",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101037",
+        "vehicle": {
+          "id": "3131359464",
+          "label": "3131359464"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "13",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332563:11448385:11462125",
+          "startTime": "18:57:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "24-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.453876,
+          "longitude": -123.39459,
+          "odometer": 212276.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322175",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102444",
+        "vehicle": {
+          "id": "3131359421",
+          "label": "3131359421"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "14",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333299:11433375:11462766",
+          "startTime": "18:50:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "11-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.45437,
+          "longitude": -123.39632,
+          "odometer": 134975.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322194",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100671",
+        "vehicle": {
+          "id": "3131359363",
+          "label": "3131359363"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "15",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333582:11415165:11464459",
+          "startTime": "18:16:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "22-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.425236,
+          "longitude": -123.34549,
+          "bearing": 5.3,
+          "odometer": 142881.0,
+          "speed": 8.88
+        },
+        "currentStopSequence": 46,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322190",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100203",
+        "vehicle": {
+          "id": "3131357519",
+          "label": "3131357519"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "16",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332978:11427135:11464357",
+          "startTime": "18:50:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "14-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.46611,
+          "longitude": -123.30937,
+          "odometer": 91957.0,
+          "speed": 0.27
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322190",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102416",
+        "vehicle": {
+          "id": "3131351239",
+          "label": "3131351239"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "17",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333001:11427178:11461717",
+          "startTime": "18:50:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "14-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.46624,
+          "longitude": -123.43511,
+          "odometer": 215427.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322189",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101119",
+        "vehicle": {
+          "id": "3131359422",
+          "label": "3131359422"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "18",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332508:11427355:11461980",
+          "startTime": "19:07:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "5-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.43807,
+          "longitude": -123.308136,
+          "odometer": 174988.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322172",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100802",
+        "vehicle": {
+          "id": "3131357507",
+          "label": "3131357507"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "19",
+      "vehicle": {
+        "trip": {
+          "tripId": "11338376:11438071:11463767",
+          "startTime": "18:43:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "11-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.469723,
+          "longitude": -123.36804,
+          "bearing": 260.1,
+          "odometer": 146090.0,
+          "speed": 11.94
+        },
+        "currentStopSequence": 2,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "930002",
+        "vehicle": {
+          "id": "3131351176",
+          "label": "3131351176"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "20",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333623:11455239:11464021",
+          "startTime": "18:35:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "39-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.468563,
+          "longitude": -123.32519,
+          "bearing": 90.8,
+          "odometer": 64729.0,
+          "speed": 13.33
+        },
+        "currentStopSequence": 22,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322190",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101020",
+        "vehicle": {
+          "id": "3131351227",
+          "label": "3131351227"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "21",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332653:11447367:11460524",
+          "startTime": "18:46:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "6A-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.424286,
+          "longitude": -123.36221,
+          "bearing": 97.6,
+          "odometer": 192047.0,
+          "speed": 8.61
+        },
+        "currentStopSequence": 3,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322188",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100045",
+        "vehicle": {
+          "id": "3131359366",
+          "label": "3131359366"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "22",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332117:11407609:11464285",
+          "startTime": "18:13:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "95-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.448444,
+          "longitude": -123.49804,
+          "bearing": 300.9,
+          "odometer": 103005.0,
+          "speed": 5.0
+        },
+        "currentStopSequence": 21,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322166",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101546",
+        "vehicle": {
+          "id": "3131359534",
+          "label": "3131359534"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "23",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332118:11436730:11463872",
+          "startTime": "18:40:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "95-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.442467,
+          "longitude": -123.470955,
+          "bearing": 105.2,
+          "odometer": 78645.0,
+          "speed": 7.77
+        },
+        "currentStopSequence": 10,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322180",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101241",
+        "vehicle": {
+          "id": "3131359532",
+          "label": "3131359532"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "24",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333035:11457358:11461082",
+          "startTime": "19:03:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "15-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.466152,
+          "longitude": -123.30842,
+          "odometer": 195817.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322181",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102417",
+        "vehicle": {
+          "id": "3131359368",
+          "label": "3131359368"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "25",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332446:11433794:11463095",
+          "startTime": "18:47:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "27-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.476048,
+          "longitude": -123.32407,
+          "bearing": 267.5,
+          "odometer": 163695.0,
+          "speed": 8.05
+        },
+        "currentStopSequence": 7,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101105",
+        "vehicle": {
+          "id": "3131357505",
+          "label": "3131357505"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "26",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333348:10034915:11462922",
+          "startTime": "18:53:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "81-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.687706,
+          "longitude": -123.41227,
+          "odometer": 270732.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322183",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102538",
+        "vehicle": {
+          "id": "3131354200",
+          "label": "3131354200"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "27",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332989:11433553:11461930",
+          "startTime": "18:41:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "15-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.431767,
+          "longitude": -123.32464,
+          "bearing": 253.0,
+          "odometer": 0.0,
+          "speed": 9.56
+        },
+        "currentStopSequence": 7,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100438",
+        "vehicle": {
+          "id": "3131357508",
+          "label": "3131357508"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "28",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332806:11409817:11462105",
+          "startTime": "18:20:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "30-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.476784,
+          "longitude": -123.39896,
+          "bearing": 339.2,
+          "odometer": 883885.0,
+          "speed": 11.11
+        },
+        "currentStopSequence": 26,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322189",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101093",
+        "vehicle": {
+          "id": "3131359409",
+          "label": "3131359409"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "29",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332149:11441671:11461271",
+          "startTime": "18:55:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "95-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.445316,
+          "longitude": -123.50574,
+          "odometer": 178123.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322179",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101573",
+        "vehicle": {
+          "id": "3131359542",
+          "label": "3131359542"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "30",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332752:11408138:11461112",
+          "startTime": "18:40:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "31-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.43261,
+          "longitude": -123.36453,
+          "bearing": 358.9,
+          "odometer": 98133.0,
+          "speed": 12.22
+        },
+        "currentStopSequence": 9,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100178",
+        "vehicle": {
+          "id": "3131359356",
+          "label": "3131359356"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "31",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333888:11422953:11462566",
+          "startTime": "18:35:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "49-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.45352,
+          "longitude": -123.513504,
+          "bearing": 296.0,
+          "odometer": 0.0,
+          "speed": 12.19
+        },
+        "currentStopSequence": 18,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322190",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "104106",
+        "vehicle": {
+          "id": "3131354211",
+          "label": "3131354211"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "32",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333129:11451107:11461028",
+          "startTime": "18:09:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "14-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.460587,
+          "longitude": -123.32363,
+          "bearing": 92.9,
+          "odometer": 102791.0,
+          "speed": 12.22
+        },
+        "currentStopSequence": 54,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322193",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100944",
+        "vehicle": {
+          "id": "3131359469",
+          "label": "3131359469"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "33",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333520:11431202:11461270",
+          "startTime": "18:12:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "22-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.4791,
+          "longitude": -123.41488,
+          "bearing": 286.1,
+          "odometer": 74087.0,
+          "speed": 10.27
+        },
+        "currentStopSequence": 45,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322194",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101171",
+        "vehicle": {
+          "id": "3131351234",
+          "label": "3131351234"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "34",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333376:11448040:11464206",
+          "startTime": "18:42:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "10-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.426067,
+          "longitude": -123.370026,
+          "bearing": 345.7,
+          "odometer": 90224.0,
+          "speed": 8.88
+        },
+        "currentStopSequence": 10,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322189",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100941",
+        "vehicle": {
+          "id": "3131354243",
+          "label": "3131354243"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "35",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332567:11422772:11465034",
+          "startTime": "18:40:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "24-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.43066,
+          "longitude": -123.35287,
+          "bearing": 184.6,
+          "odometer": 33052.0,
+          "speed": 4.16
+        },
+        "currentStopSequence": 18,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322173",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100172",
+        "vehicle": {
+          "id": "3131351187",
+          "label": "3131351187"
+        }
+      }
+    },
+    {
+      "id": "36",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332087:11408647:11463601",
+          "startTime": "17:57:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "72-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.446827,
+          "longitude": -123.372025,
+          "bearing": 159.4,
+          "odometer": 211318.0,
+          "speed": 11.11
+        },
+        "currentStopSequence": 53,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322187",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100347",
+        "vehicle": {
+          "id": "3131359541",
+          "label": "3131359541"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "37",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332576:11442730:11460126",
+          "startTime": "18:14:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "25-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.442554,
+          "longitude": -123.34928,
+          "bearing": 36.5,
+          "odometer": 72807.0,
+          "speed": 9.16
+        },
+        "currentStopSequence": 54,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322186",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100443",
+        "vehicle": {
+          "id": "3131359407",
+          "label": "3131359407"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "38",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332757:11411061:11460080",
+          "startTime": "19:12:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "31-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.498344,
+          "longitude": -123.38886,
+          "odometer": 161049.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322186",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102489",
+        "vehicle": {
+          "id": "3131357513",
+          "label": "3131357513"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "39",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333374:11444923:11460030",
+          "startTime": "18:20:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "3-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.430023,
+          "longitude": -123.32997,
+          "bearing": 5.2,
+          "odometer": 220102.0,
+          "speed": 6.66
+        },
+        "currentStopSequence": 45,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322194",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100451",
+        "vehicle": {
+          "id": "3131354219",
+          "label": "3131354219"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "40",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332420:11439282:11463491",
+          "startTime": "18:33:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "27-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.424408,
+          "longitude": -123.36537,
+          "odometer": 3423.0,
+          "speed": 2.5
+        },
+        "currentStopSequence": 3,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322193",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100032",
+        "vehicle": {
+          "id": "3131359434",
+          "label": "3131359434"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "41",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333639:11181878:11460495",
+          "startTime": "18:45:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "7-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.453827,
+          "longitude": -123.31485,
+          "bearing": 198.3,
+          "odometer": 217610.0,
+          "speed": 10.0
+        },
+        "currentStopSequence": 6,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100897",
+        "vehicle": {
+          "id": "3131359382",
+          "label": "3131359382"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "42",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332664:11437573:11464659",
+          "startTime": "18:31:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "6-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.4631,
+          "longitude": -123.359566,
+          "odometer": 131708.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 21,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322186",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100782",
+        "vehicle": {
+          "id": "3131357517",
+          "label": "3131357517"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "43",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332090:11410174:11462683",
+          "startTime": "18:58:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "72-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.419735,
+          "longitude": -123.368866,
+          "odometer": 284800.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322194",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100029",
+        "vehicle": {
+          "id": "3131359528",
+          "label": "3131359528"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "44",
+      "vehicle": {
+        "position": {
+          "latitude": 48.445454,
+          "longitude": -123.50524,
+          "odometer": 108066.0,
+          "speed": 0.0
+        },
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322172",
+        "vehicle": {
+          "id": "3131354209",
+          "label": "3131354209"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "45",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332420:11439282:11463491",
+          "startTime": "18:33:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "27-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.441723,
+          "longitude": -123.33346,
+          "bearing": 0.7,
+          "odometer": 113097.0,
+          "speed": 10.55
+        },
+        "currentStopSequence": 17,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322189",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100549",
+        "vehicle": {
+          "id": "3131359379",
+          "label": "3131359379"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "46",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333646:11442174:11463265",
+          "startTime": "18:40:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "52-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.41452,
+          "longitude": -123.48342,
+          "bearing": 188.9,
+          "odometer": 10444.0,
+          "speed": 12.22
+        },
+        "currentStopSequence": 15,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322189",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100154",
+        "vehicle": {
+          "id": "3131351173",
+          "label": "3131351173"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "47",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332364:11424706:11459954",
+          "startTime": "18:46:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "28-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.42411,
+          "longitude": -123.365395,
+          "odometer": 195246.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 3,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322184",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100032",
+        "vehicle": {
+          "id": "3131359441",
+          "label": "3131359441"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "48",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332105:11451952:11463696",
+          "startTime": "18:57:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "72-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.687897,
+          "longitude": -123.41224,
+          "odometer": 178742.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322175",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100157",
+        "vehicle": {
+          "id": "3131359502",
+          "label": "3131359502"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "49",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333629:11427384:11461016",
+          "startTime": "18:42:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "22-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.43086,
+          "longitude": -123.345184,
+          "bearing": 182.2,
+          "odometer": 234228.0,
+          "speed": 9.16
+        },
+        "currentStopSequence": 11,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322183",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102617",
+        "vehicle": {
+          "id": "3131351171",
+          "label": "3131351171"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "50",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332980:11447134:11462213",
+          "startTime": "18:08:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "14-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.455044,
+          "longitude": -123.439705,
+          "bearing": 325.1,
+          "odometer": 0.0,
+          "speed": 12.86
+        },
+        "currentStopSequence": 50,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322188",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101051",
+        "vehicle": {
+          "id": "3131359437",
+          "label": "3131359437"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "51",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332798:11446652:11462886",
+          "startTime": "17:57:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "75-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.569828,
+          "longitude": -123.45543,
+          "bearing": 45.4,
+          "odometer": 222196.0,
+          "speed": 10.27
+        },
+        "currentStopSequence": 48,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101964",
+        "vehicle": {
+          "id": "3131359408",
+          "label": "3131359408"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "52",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332111:11439611:11460237",
+          "startTime": "18:43:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "95-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.428898,
+          "longitude": -123.36442,
+          "bearing": 358.9,
+          "odometer": 56355.0,
+          "speed": 13.33
+        },
+        "currentStopSequence": 5,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100146",
+        "vehicle": {
+          "id": "3131359513",
+          "label": "3131359513"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "53",
+      "vehicle": {
+        "trip": {
+          "tripId": "11338558:10034125:11462194",
+          "startTime": "19:01:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "14-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.445618,
+          "longitude": -123.51834,
+          "odometer": 245378.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "INCOMING_AT",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "930000",
+        "vehicle": {
+          "id": "3131351250",
+          "label": "3131351250"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "54",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332369:11448454:11461372",
+          "startTime": "18:21:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "28-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.475925,
+          "longitude": -123.332344,
+          "bearing": 94.7,
+          "odometer": 197706.0,
+          "speed": 6.07
+        },
+        "currentStopSequence": 31,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322194",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101108",
+        "vehicle": {
+          "id": "3131359362",
+          "label": "3131359362"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "55",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333871:11439708:11464332",
+          "startTime": "18:25:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "59-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.40753,
+          "longitude": -123.490906,
+          "bearing": 53.0,
+          "odometer": 237076.0,
+          "speed": 10.0
+        },
+        "currentStopSequence": 35,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322194",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102349",
+        "vehicle": {
+          "id": "3131354204",
+          "label": "3131354204"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "56",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332165:11449793:11462528",
+          "startTime": "18:24:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "95-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.445545,
+          "longitude": -123.37115,
+          "bearing": 157.4,
+          "odometer": 50119.0,
+          "speed": 8.33
+        },
+        "currentStopSequence": 18,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322159",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100347",
+        "vehicle": {
+          "id": "3131359511",
+          "label": "3131359511"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "57",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333391:11408768:11462023",
+          "startTime": "18:50:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "3-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.416515,
+          "longitude": -123.37332,
+          "bearing": 184.1,
+          "odometer": 88452.0,
+          "speed": 3.61
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100022",
+        "vehicle": {
+          "id": "3131354241",
+          "label": "3131354241"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "58",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332255:11411422:11463727",
+          "startTime": "17:48:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "61-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.376854,
+          "longitude": -123.73552,
+          "bearing": 245.8,
+          "odometer": 284436.0,
+          "speed": 7.22
+        },
+        "currentStopSequence": 51,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322194",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102339",
+        "vehicle": {
+          "id": "3131351249",
+          "label": "3131351249"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "59",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332902:11430455:11464754",
+          "startTime": "18:39:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "4-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.43484,
+          "longitude": -123.36504,
+          "bearing": 341.6,
+          "odometer": 146851.0,
+          "speed": 7.77
+        },
+        "currentStopSequence": 7,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322162",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100198",
+        "vehicle": {
+          "id": "3131359455",
+          "label": "3131359455"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "60",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332497:11432573:11462577",
+          "startTime": "18:25:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "2-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.42664,
+          "longitude": -123.342186,
+          "bearing": 92.1,
+          "odometer": 176619.0,
+          "speed": 9.16
+        },
+        "currentStopSequence": 29,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100262",
+        "vehicle": {
+          "id": "3131359335",
+          "label": "3131359335"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "61",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332646:11422396:11464839",
+          "startTime": "18:35:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "6-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.44746,
+          "longitude": -123.36157,
+          "bearing": 169.5,
+          "odometer": 293913.0,
+          "speed": 12.22
+        },
+        "currentStopSequence": 20,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322191",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100389",
+        "vehicle": {
+          "id": "3131351226",
+          "label": "3131351226"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "62",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332947:11411804:11460239",
+          "startTime": "18:46:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "4-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.45336,
+          "longitude": -123.31503,
+          "bearing": 199.7,
+          "odometer": 82560.0,
+          "speed": 9.16
+        },
+        "currentStopSequence": 6,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322193",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100897",
+        "vehicle": {
+          "id": "3131351181",
+          "label": "3131351181"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "63",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332754:11423036:11465084",
+          "startTime": "18:34:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "31-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.442528,
+          "longitude": -123.369415,
+          "bearing": 159.0,
+          "odometer": 133301.0,
+          "speed": 10.83
+        },
+        "currentStopSequence": 21,
+        "currentStatus": "INCOMING_AT",
+        "timestamp": "1767322194",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100291",
+        "vehicle": {
+          "id": "3131351241",
+          "label": "3131351241"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "64",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332973:11459402:11462867",
+          "startTime": "18:28:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "14-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.426075,
+          "longitude": -123.36293,
+          "bearing": 278.8,
+          "odometer": 100857.0,
+          "speed": 9.16
+        },
+        "currentStopSequence": 28,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322188",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100048",
+        "vehicle": {
+          "id": "3131351179",
+          "label": "3131351179"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "65",
+      "vehicle": {
+        "trip": {
+          "tripId": "11338417:10008158:11459833",
+          "startTime": "18:47:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "70-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.4287,
+          "longitude": -123.36436,
+          "bearing": 358.6,
+          "odometer": 140009.0,
+          "speed": 10.83
+        },
+        "currentStopSequence": 2,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322193",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102404",
+        "vehicle": {
+          "id": "3131359506",
+          "label": "3131359506"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "66",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333543:11430276:11464650",
+          "startTime": "18:26:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "7-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.46004,
+          "longitude": -123.314476,
+          "bearing": 27.4,
+          "odometer": 157197.0,
+          "speed": 8.05
+        },
+        "currentStopSequence": 33,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322189",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101036",
+        "vehicle": {
+          "id": "3131359477",
+          "label": "3131359477"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "67",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333630:11417638:11463645",
+          "startTime": "18:35:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "39-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.503536,
+          "longitude": -123.34845,
+          "bearing": 266.0,
+          "odometer": 0.0,
+          "speed": 12.29
+        },
+        "currentStopSequence": 17,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322189",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101485",
+        "vehicle": {
+          "id": "3131-357504",
+          "label": "3131357504"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "68",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332081:11446845:11463050",
+          "startTime": "18:50:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "70X-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.688217,
+          "longitude": -123.41205,
+          "odometer": 104971.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322189",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102404",
+        "vehicle": {
+          "id": "3131359520",
+          "label": "3131359520"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "69",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333294:11456296:11464827",
+          "startTime": "18:10:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "11-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.447826,
+          "longitude": -123.39943,
+          "odometer": 48689.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 54,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322176",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100569",
+        "vehicle": {
+          "id": "3131351160",
+          "label": "3131351160"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "70",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332153:11415848:11462277",
+          "startTime": "18:58:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "95-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.419872,
+          "longitude": -123.36898,
+          "odometer": 227075.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322173",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102211",
+        "vehicle": {
+          "id": "3131359540",
+          "label": "3131359540"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "71",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332985:11446546:11459958",
+          "startTime": "18:21:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "15-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.431683,
+          "longitude": -123.394135,
+          "odometer": 4.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 20,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322194",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100242",
+        "vehicle": {
+          "id": "3131359394",
+          "label": "3131359394"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "72",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333596:11424797:11464646",
+          "startTime": "18:24:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "52-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.422832,
+          "longitude": -123.533005,
+          "bearing": 190.6,
+          "odometer": 35952.0,
+          "speed": 7.77
+        },
+        "currentStopSequence": 26,
+        "currentStatus": "INCOMING_AT",
+        "timestamp": "1767322191",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101764",
+        "vehicle": {
+          "id": "3131351256",
+          "label": "3131351256"
+        }
+      }
+    },
+    {
+      "id": "73",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332991:11442055:11462733",
+          "startTime": "18:30:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "14-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.43111,
+          "longitude": -123.3788,
+          "odometer": 123823.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 26,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322190",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100149",
+        "vehicle": {
+          "id": "3131359355",
+          "label": "3131359355"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "74",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332502:11434305:11464739",
+          "startTime": "18:45:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "5-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.41477,
+          "longitude": -123.381584,
+          "bearing": 36.8,
+          "odometer": 3590796.0,
+          "speed": 5.55
+        },
+        "currentStopSequence": 5,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322189",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100044",
+        "vehicle": {
+          "id": "3131359483",
+          "label": "3131359483"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "75",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332394:11430693:11462544",
+          "startTime": "18:58:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "27-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.421535,
+          "longitude": -123.36383,
+          "odometer": 38107.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322174",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100024",
+        "vehicle": {
+          "id": "3131357506",
+          "label": "3131357506"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "76",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333394:11440390:11461738",
+          "startTime": "18:49:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "3-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.43371,
+          "longitude": -123.327705,
+          "odometer": 99567.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322191",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "103741",
+        "vehicle": {
+          "id": "3131354242",
+          "label": "3131354242"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "77",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333851:10000750:11463212",
+          "startTime": "19:00:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "60-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.445484,
+          "longitude": -123.50499,
+          "odometer": 119662.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322141",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101534",
+        "vehicle": {
+          "id": "3131354224",
+          "label": "3131354224"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "78",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332253:11411931:11465030",
+          "startTime": "18:35:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "61-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.423233,
+          "longitude": -123.57449,
+          "bearing": 233.1,
+          "odometer": 111817.0,
+          "speed": 20.55
+        },
+        "currentStopSequence": 15,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322191",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101501",
+        "vehicle": {
+          "id": "3131351246",
+          "label": "3131351246"
+        },
+        "occupancyStatus": "FEW_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "79",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333619:11458251:11459917",
+          "startTime": "18:00:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "52-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.475796,
+          "longitude": -123.531075,
+          "bearing": 95.8,
+          "odometer": 201982.0,
+          "speed": 2.77
+        },
+        "currentStopSequence": 53,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101834",
+        "vehicle": {
+          "id": "3131351253",
+          "label": "3131351253"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "80",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333620:11409438:11464220",
+          "startTime": "18:37:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "21-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.44599,
+          "longitude": -123.37763,
+          "bearing": 307.9,
+          "odometer": 210799.0,
+          "speed": 9.44
+        },
+        "currentStopSequence": 10,
+        "currentStatus": "INCOMING_AT",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100380",
+        "vehicle": {
+          "id": "3131359359",
+          "label": "3131359359"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "81",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332901:11429848:11464562",
+          "startTime": "18:22:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "4-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.463947,
+          "longitude": -123.30824,
+          "bearing": 344.7,
+          "odometer": 164498.0,
+          "speed": 8.61
+        },
+        "currentStopSequence": 29,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322188",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102420",
+        "vehicle": {
+          "id": "3131359360",
+          "label": "3131359360"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "82",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332763:11423845:11461135",
+          "startTime": "18:49:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "30-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.497093,
+          "longitude": -123.38951,
+          "bearing": 200.4,
+          "odometer": 181119.0,
+          "speed": 11.11
+        },
+        "currentStopSequence": 2,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322180",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101399",
+        "vehicle": {
+          "id": "3131359364",
+          "label": "3131359364"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "83",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332796:11422735:11461366",
+          "startTime": "18:30:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "75-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.56182,
+          "longitude": -123.46471,
+          "bearing": 116.7,
+          "odometer": 229927.0,
+          "speed": 4.72
+        },
+        "currentStopSequence": 23,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322190",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102017",
+        "vehicle": {
+          "id": "3131359414",
+          "label": "3131359414"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "84",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332987:11450754:11460103",
+          "startTime": "18:48:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "15-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.429855,
+          "longitude": -123.41893,
+          "bearing": 88.3,
+          "odometer": 160159.0,
+          "speed": 10.85
+        },
+        "currentStopSequence": 5,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322185",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100526",
+        "vehicle": {
+          "id": "3131359443",
+          "label": "3131359443"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "85",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332685:11407303:11463512",
+          "startTime": "18:53:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "6-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.4986,
+          "longitude": -123.38863,
+          "odometer": 183050.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322183",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102489",
+        "vehicle": {
+          "id": "3131359308",
+          "label": "3131359308"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "86",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333184:11431411:11460112",
+          "startTime": "18:38:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "26-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.453194,
+          "longitude": -123.39206,
+          "odometer": 184305.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 16,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322191",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100623",
+        "vehicle": {
+          "id": "3131359339",
+          "label": "3131359339"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "87",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332530:10008730:11460559",
+          "startTime": "18:44:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "2-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.4261,
+          "longitude": -123.31018,
+          "bearing": 312.6,
+          "odometer": 187802.0,
+          "speed": 8.61
+        },
+        "currentStopSequence": 13,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322194",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100701",
+        "vehicle": {
+          "id": "3131359411",
+          "label": "3131359411"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "88",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333668:10028629:11460272",
+          "startTime": "18:40:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "21-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.44969,
+          "longitude": -123.38528,
+          "bearing": 127.7,
+          "odometer": 0.0,
+          "speed": 13.06
+        },
+        "currentStopSequence": 17,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100486",
+        "vehicle": {
+          "id": "3131359310",
+          "label": "3131359310"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "89",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333884:11410549:11463379",
+          "startTime": "18:36:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "55-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.41152,
+          "longitude": -123.53674,
+          "bearing": 65.7,
+          "odometer": 148942.0,
+          "speed": 13.88
+        },
+        "currentStopSequence": 22,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322190",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101776",
+        "vehicle": {
+          "id": "3131354216",
+          "label": "3131354216"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "90",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333143:11451251:11461184",
+          "startTime": "19:11:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "28-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.421627,
+          "longitude": -123.36395,
+          "odometer": 207748.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322185",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100024",
+        "vehicle": {
+          "id": "3131359403",
+          "label": "3131359403"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "91",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332781:11409166:11461433",
+          "startTime": "19:00:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "75-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.420498,
+          "longitude": -123.36814,
+          "odometer": 99432.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322160",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "102467",
+        "vehicle": {
+          "id": "3131359385",
+          "label": "3131359385"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "92",
+      "vehicle": {
+        "trip": {
+          "tripId": "11333059:11413797:11461460",
+          "startTime": "18:28:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "15-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.427795,
+          "longitude": -123.334564,
+          "bearing": 54.6,
+          "odometer": 112780.0,
+          "speed": 10.55
+        },
+        "currentStopSequence": 24,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322189",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100427",
+        "vehicle": {
+          "id": "3131359413",
+          "label": "3131359413"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "93",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332091:11455826:11460529",
+          "startTime": "18:39:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "70-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.441303,
+          "longitude": -123.36854,
+          "bearing": 340.2,
+          "odometer": 5921.0,
+          "speed": 10.55
+        },
+        "currentStopSequence": 10,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322188",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100295",
+        "vehicle": {
+          "id": "3131359503",
+          "label": "3131359503"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "94",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332121:11459419:11460319",
+          "startTime": "19:10:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "95-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.445374,
+          "longitude": -123.50547,
+          "odometer": 71216.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 1,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322156",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "101573",
+        "vehicle": {
+          "id": "3131359504",
+          "label": "3131359504"
+        },
+        "occupancyStatus": "EMPTY"
+      }
+    },
+    {
+      "id": "95",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332135:11427698:11464946",
+          "startTime": "18:28:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "95-VIC",
+          "directionId": 1
+        },
+        "position": {
+          "latitude": 48.458366,
+          "longitude": -123.39622,
+          "bearing": 269.2,
+          "odometer": 197308.0,
+          "speed": 10.27
+        },
+        "currentStopSequence": 11,
+        "currentStatus": "IN_TRANSIT_TO",
+        "timestamp": "1767322192",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100817",
+        "vehicle": {
+          "id": "3131359543",
+          "label": "3131359543"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    },
+    {
+      "id": "96",
+      "vehicle": {
+        "trip": {
+          "tripId": "11332098:11412059:11460963",
+          "startTime": "18:28:00",
+          "startDate": "20260101",
+          "scheduleRelationship": "SCHEDULED",
+          "routeId": "72-VIC",
+          "directionId": 0
+        },
+        "position": {
+          "latitude": 48.46783,
+          "longitude": -123.379,
+          "odometer": 225858.0,
+          "speed": 0.0
+        },
+        "currentStopSequence": 17,
+        "currentStatus": "STOPPED_AT",
+        "timestamp": "1767322189",
+        "congestionLevel": "RUNNING_SMOOTHLY",
+        "stopId": "100875",
+        "vehicle": {
+          "id": "3131359529",
+          "label": "3131359529"
+        },
+        "occupancyStatus": "MANY_SEATS_AVAILABLE"
+      }
+    }
+  ]
 }

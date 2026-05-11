@@ -2,7 +2,7 @@
 import csv, json, re
 from collections import defaultdict, Counter
 
-TRIPS = "trips1.txt"
+TRIPS = "trips2.txt"
 OUT   = "static/tripMaps.js"
 
 def norm(s: str) -> str:
