@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="static/dropdown.css">
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
-    <script src="static/routes_polyline.js"></script>
     <script src="static/tripMaps.js"></script>
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-32.png') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +25,26 @@
             background: white;
             padding: 10px;
         }
+
+        .crayon-line {
+            filter: url(#crayonTexture);
+            stroke-linecap: round;
+            opacity: 0.85;
+        }
+
+        .bus-marker {
+            position: relative;
+        }
+
+        .occupancy-badge {
+            position: absolute;
+            bottom: -10px;
+            left: 0px;
+            background: white;
+            border-radius: 4px;
+            padding: 1px 2px;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+        }
     </style>
 </head>
 
@@ -40,6 +59,22 @@
     </div>
     <div id="map"></div>
     <script>
+        let routes_polyline = { type: "FeatureCollection", features: [] };
+
+        fetch('static/routes.geojson')
+            .then(r => r.json())
+            .then(data => {
+                routes_polyline = data;
+
+                // the new geojson already has direction per feature
+                routes_polyline.features.forEach(feature => {
+                    const p = feature.properties || {};
+                    if (p.direction !== undefined) {
+                        p.direction_id = Math.round(p.direction); // 0.0/1.0 -> 0/1
+                    }
+                });
+            })
+            .catch(err => console.error("Failed to load routes.geojson:", err));
         var map = L.map('map', {
             zoomControl: true,
             tap: true
@@ -102,7 +137,7 @@
         */
         function norm(s) {
             return (s || "").toLowerCase()
-                .replace(/[-]/g, "")            // remove dashes
+                .replace(/[-–—]/g, "")            // remove dashes
                 .replace(/\s+/g, " ")         // normalize spaces
                 //.replace(/via/g, '')          // optionally remove "via"
                 .trim();
@@ -117,30 +152,66 @@
             L.circle(e.latlng, radius).addTo(map);
         }
         map.on('locationfound', onLocationFound);
-
-        function resolveDir(route_id, rawHeadsign) {
-            const table = headsignDirMajority[route_id];
-            if (!table) return null;
-            const n = norm(rawHeadsign);
-            if (table[n]) return table[n].dir;
-
-            //soft fallback 
-            const nNoVia = n.replace(/\s*-\s*via .*$/i, "");
-            if (table[nNoVia]) return table[nNoVia].dir;
-
-            const nNoOnly = n.replace(/\s+only$/i, "");
-            if (table[nNoOnly]) return table[nNoOnly].dir;
-
-            return null;
+        //map.locate({ setView: false, maxZoom: 16 });
+        /*
+                function resolveDir(route_id, rawHeadsign) {
+                    const table = headsignDirMajority[route_id];
+                    if (!table) return null;
+                    const n = norm(rawHeadsign);
+                    if (table[n]) return table[n].dir;
+        
+                    //soft fallback 
+                    const nNoVia = n.replace(/\s*-\s*via .*$/i, "");
+                    if (table[nNoVia]) return table[nNoVia].dir;
+        
+                    const nNoOnly = n.replace(/\s+only$/i, "");
+                    if (table[nNoOnly]) return table[nNoOnly].dir;
+        
+                    return null;
+                }
+        
+                routes_polyline.features.forEach(feature => {
+                    const p = feature.properties || {};
+                    if (!p.route_id || !p.headsign) return;
+                    const d = resolveDir(p.route_id, p.headsign);
+                    if (d !== null) {
+                        p.direction_id = d;
+                    } else {
+                        console.warn(`Could not resolve direction for route "${p.route_id}" and headsign "${p.headsign}" (normalized: "${norm(p.headsign)}")`);
+        
+                    }
+                });
+        */
+        function busIconSVG(color) {
+            return `
+            <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="3" width="18" height="12" rx="3" fill="${color}" stroke="#222" stroke-width="1"/>
+                <rect x="4" y="5" width="4" height="4" rx="0.5" fill="white" opacity="0.9"/>
+                <rect x="9" y="5" width="4" height="4" rx="0.5" fill="white" opacity="0.9"/>
+                <rect x="14" y="5" width="4" height="4" rx="0.5" fill="white" opacity="0.9"/>
+                <circle cx="6" cy="16" r="2" fill="#222"/>
+                <circle cx="16" cy="16" r="2" fill="#222"/>
+            </svg>`;
         }
+        function occupancyBadgeSVG(status) {
+            const levels = {
+                'EMPTY': { filled: 0, color: '#2e7d32' }, // green
+                'MANY_SEATS_AVAILABLE': { filled: 1, color: '#2e7d32' }, // green
+                'FEW_SEATS_AVAILABLE': { filled: 2, color: '#f9a825' }, // yellow
+                'STANDING_ROOM_ONLY': { filled: 3, color: '#ef6c00' }, // orange
+                'CRUSHED_STANDING_ROOM_ONLY': { filled: 3, color: '#c62828' }, // red
+                'FULL': { filled: 3, color: '#c62828' }, // red
+                'NOT_ACCEPTING_PASSENGERS': { filled: 3, color: '#6a1b9a' }, // purple
+            };
+            const { filled, color } = levels[status] || { filled: 0, color: '#9e9e9e' }; // gray = unknown/no data
 
-        routes_polyline.features.forEach(feature => {
-            const p = feature.properties || {};
-            if (!p.route_id || !p.headsign) return;
-            const d = resolveDir(p.route_id, p.headsign);
-            if (d !== null) p.direction_id = d
-        });
-
+            let people = '';
+            for (let i = 0; i < 3; i++) {
+                const on = i < filled;
+                people += `<circle cx="${3 + i * 7}" cy="4" r="2.6" fill="${on ? color : 'white'}" stroke="${color}" stroke-width="1"/>`;
+            }
+            return `<svg width="24" height="8" viewBox="0 0 24 8" xmlns="http://www.w3.org/2000/svg">${people}</svg>`;
+        }
         // Populate route dropdown
         const routeDropdown = document.getElementById("routeDropdown");
         routeDropdown.innerHTML = '<option value="">Select a route</option>';
@@ -172,6 +243,19 @@
 
         });
 
+        const routeColors = {
+            '28-VIC': '#d62728',  // crayon red
+            '4-VIC': '#1f4ea1',  // crayon blue
+        };
+
+        function getColorForRoute(route_id) {
+            if (routeColors[route_id]) return routeColors[route_id];
+            let hash = 0;
+            for (let i = 0; i < route_id.length; i++) {
+                hash = route_id.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            return `hsl(${Math.abs(hash) % 360}, 65%, 45%)`;
+        }
 
         document.getElementById("headsignDropdown").addEventListener("change", function (e) {
             selectedDirectionId = parseInt(e.target.value);
@@ -191,7 +275,13 @@
             routes_polyline.features.forEach(feature => {
                 const props = feature.properties;
                 if (props.route_id === selectedRouteId && props.direction_id === selectedDirectionId) {
-                    const polyline = L.geoJSON(feature).addTo(map);
+                    const polyline = L.geoJSON(feature, {
+                        style: {
+                            color: getColorForRoute(props.route_id),
+                            weight: 6,
+                            className: 'crayon-line'
+                        }
+                    }).addTo(map);
                     polylineLayers[key].push(polyline); //push to the array
                 }
             });
@@ -216,23 +306,31 @@
             const direction_id = tripInfo.direction_id;
             const headsign = tripInfo.headsign;
 
-            if (!markers[vehicle_id]) {
-                const busIcon = L.icon({
-                    iconUrl: '/static/favicon-32.png',
-                    iconSize: [20, 29],
-                    iconAnchor: [10, 29],
-                    popupAnchor: [0, -29],
+            function busIconWithOccupancy(status) {
+                return L.divIcon({
+                    className: 'bus-marker',
+                    html: `
+                        ${busIconSVG(getColorForRoute(route_id))}
+                        <div class="occupancy-badge">${occupancyBadgeSVG(status)}</div>
+        `,
+                    iconSize: [22, 22],
+                    iconAnchor: [11, 11],
+                    popupAnchor: [0, -11],
                 });
+            }
 
-                markers[vehicle_id] = L.marker([latitude, longitude], { icon: busIcon })
-                    .bindPopup(
-                        `Headsign: ${headsign}<br>
-                 Direction: ${direction_id}<br>
-                 Occupancy: ${vehicle_seats}<br>
-                 Speed: ${vehicle_speed}`
-                    );
+            const popupHtml = `Headsign: ${headsign}<br>
+                    Direction: ${direction_id}<br>
+                    Occupancy: ${vehicle_seats}<br>
+                    Speed: ${vehicle_speed}`;
+
+            if (!markers[vehicle_id]) {
+                markers[vehicle_id] = L.marker([latitude, longitude], { icon: busIconWithOccupancy(vehicle_seats) })
+                    .bindPopup(popupHtml);
             } else {
                 markers[vehicle_id].setLatLng([latitude, longitude]);
+                markers[vehicle_id].setIcon(busIconWithOccupancy(vehicle_seats, route_id)); // refresh badge as occupancy changes
+                markers[vehicle_id].setPopupContent(popupHtml); // keep popup text current too
             }
 
             console.log("FILTER CHECK", {
@@ -262,6 +360,12 @@
 
 
     </script>
+    <svg width="0" height="0" style="position:absolute">
+        <filter id="crayonTexture" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </svg>
 </body>
 
 </html>
