@@ -11,6 +11,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
+
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 with open('routes.json', 'r') as json_file:
@@ -22,11 +23,17 @@ def index():
     return render_template('index.html')
 
 def emit_data():
+    last_timestamp = None
     while True:
         try:
             try:
                 with open('gtfs_realtime.json', 'r') as f:
                     feed_dict = json.load(f)
+                    ts = feed_dict.get('header', {}).get('timestamp')
+                    if ts == last_timestamp:
+                        time.sleep(1)
+                        continue
+                    last_timestamp = ts
             except json.JSONDecodeError:
                 time.sleep(0.2)
                 continue
