@@ -31,7 +31,7 @@ def emit_data():
                     feed_dict = json.load(f)
                     ts = feed_dict.get('header', {}).get('timestamp')
                     if ts == last_timestamp:
-                        time.sleep(1)
+                        time.sleep(0.5)
                         continue
                     last_timestamp = ts
             except json.JSONDecodeError:

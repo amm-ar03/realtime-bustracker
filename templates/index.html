@@ -33,13 +33,11 @@
         }
 
         .bus-marker {
-            position: relative;
+            display: block;
         }
 
         .occupancy-badge {
-            position: absolute;
-            bottom: -10px;
-            left: 0px;
+            bottom: -8px;
             background: white;
             border-radius: 4px;
             padding: 1px 2px;
@@ -210,7 +208,7 @@
                 const on = i < filled;
                 people += `<circle cx="${3 + i * 7}" cy="4" r="2.6" fill="${on ? color : 'white'}" stroke="${color}" stroke-width="1"/>`;
             }
-            return `<svg width="24" height="8" viewBox="0 0 24 8" xmlns="http://www.w3.org/2000/svg">${people}</svg>`;
+            return `<svg width="20" height="7" viewBox="0 0 20 7" xmlns="http://www.w3.org/2000/svg">${people}</svg>`;
         }
         // Populate route dropdown
         const routeDropdown = document.getElementById("routeDropdown");
@@ -256,7 +254,18 @@
             }
             return `hsl(${Math.abs(hash) % 360}, 65%, 45%)`;
         }
-
+        function busIconWithOccupancy(status, route_id) {
+            return L.divIcon({
+                className: 'bus-marker',
+                html: `
+                        ${busIconSVG(getColorForRoute(route_id))}
+                        <div class="occupancy-badge">${occupancyBadgeSVG(status)}</div>
+        `,
+                iconSize: [22, 29],
+                iconAnchor: [11, 11],
+                popupAnchor: [0, -11],
+            });
+        }
         document.getElementById("headsignDropdown").addEventListener("change", function (e) {
             selectedDirectionId = parseInt(e.target.value);
 
@@ -306,18 +315,7 @@
             const direction_id = tripInfo.direction_id;
             const headsign = tripInfo.headsign;
 
-            function busIconWithOccupancy(status) {
-                return L.divIcon({
-                    className: 'bus-marker',
-                    html: `
-                        ${busIconSVG(getColorForRoute(route_id))}
-                        <div class="occupancy-badge">${occupancyBadgeSVG(status)}</div>
-        `,
-                    iconSize: [22, 22],
-                    iconAnchor: [11, 11],
-                    popupAnchor: [0, -11],
-                });
-            }
+
 
             const popupHtml = `Headsign: ${headsign}<br>
                     Direction: ${direction_id}<br>
@@ -325,7 +323,7 @@
                     Speed: ${vehicle_speed}`;
 
             if (!markers[vehicle_id]) {
-                markers[vehicle_id] = L.marker([latitude, longitude], { icon: busIconWithOccupancy(vehicle_seats) })
+                markers[vehicle_id] = L.marker([latitude, longitude], { icon: busIconWithOccupancy(vehicle_seats, route_id) })
                     .bindPopup(popupHtml);
             } else {
                 markers[vehicle_id].setLatLng([latitude, longitude]);
