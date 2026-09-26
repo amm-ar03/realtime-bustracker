@@ -38,6 +38,7 @@ def emit_data():
                         time.sleep(0.5)
                         continue
                     last_timestamp = ts
+                    socketio.emit('timestamp_update', {'timestamp': ts})
             except json.JSONDecodeError:
                 time.sleep(0.2)
                 continue

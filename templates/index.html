@@ -43,6 +43,83 @@
             padding: 1px 2px;
             box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
         }
+
+        #aboutButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: #2e7d32;
+            color: white;
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        #aboutPanel {
+            position: absolute;
+            top: 48px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            border-radius: 8px;
+            padding: 16px 18px;
+            max-width: 260px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+            font-family: system-ui, sans-serif;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        #aboutPanel.hidden {
+            display: none;
+        }
+
+        #aboutPanel h2 {
+            margin: 0 0 8px;
+            font-size: 16px;
+        }
+
+        #aboutPanel ul {
+            margin: 8px 0;
+            padding-left: 18px;
+        }
+
+        #aboutPanel a {
+            color: #2e7d32;
+        }
+
+        #aboutClose {
+            position: absolute;
+            top: 6px;
+            right: 10px;
+            border: none;
+            background: none;
+            font-size: 18px;
+            line-height: 1;
+            cursor: pointer;
+            color: #888;
+        }
+
+        #lastUpdated {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+            font-family: system-ui, sans-serif;
+            font-size: 12px;
+            color: #666;
+        }
     </style>
 </head>
 
@@ -55,7 +132,24 @@
             <option value="">Select a headsign</option>
         </select>
     </div>
+    <button id="aboutButton" aria-label="About this project">i</button>
+
+    <div id="aboutPanel" class="hidden">
+        <button id="aboutClose" aria-label="Close">&times;</button>
+        <h2>Victoria Transit Tracker</h2>
+        <p>Live positions for BC Transit buses in Greater Victoria, pulled from BC Transit's GTFS-Realtime feed every 5
+            seconds.</p>
+        <ul>
+            <li>Flask + Socket.IO backend</li>
+            <li>Leaflet.js for the map</li>
+            <li>GTFS-Realtime protobuf feed, decoded live</li>
+        </ul>
+        <p><a href="https://github.com/amm-ar03/realtime-bustracker.git" target="_blank" rel="noopener">View source on
+                GitHub</a></p>
+
+    </div>
     <div id="map"></div>
+    <div id="lastUpdated">Waiting for data...</div>
     <script>
         let routes_polyline = { type: "FeatureCollection", features: [] };
 
@@ -220,6 +314,13 @@
             routeDropdown.appendChild(option);
         });
 
+        document.getElementById('aboutButton').addEventListener('click', () => {
+            document.getElementById('aboutPanel').classList.toggle('hidden');
+        });
+        document.getElementById('aboutClose').addEventListener('click', () => {
+            document.getElementById('aboutPanel').classList.add('hidden');
+        });
+
         // Populate headsigns on route selection
         routeDropdown.addEventListener("change", e => {
             selectedRouteId = e.target.value;
@@ -276,6 +377,21 @@
             //Remove all existing markers
             Object.values(markers).forEach(m => map.removeLayer(m));
 
+            let lastTimestamp = null;
+            socket.on('timestamp_update', function (data) {
+                lastTimestamp = data.timestamp;
+            });
+
+            setInterval(() => {
+                const el = document.getElementById('lastUpdated');
+                if (!el) return;
+                if (lastTimestamp == null) {
+                    el.textContent = 'Waiting for data...';
+                    return;
+                }
+                const secondsAgo = Math.floor(Date.now() / 1000 - lastTimestamp);
+                el.textContent = secondsAgo <= 1 ? 'Updated just now' : `Updated ${secondsAgo} seconds ago`;
+            }, 1000);
 
             //Draw polyline(s) for the selected route + direction
             let key = `${selectedRouteId}_${selectedDirectionId}`;
