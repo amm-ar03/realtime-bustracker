@@ -1,3 +1,5 @@
+import eventlet
+eventlet.monkey_patch()
 import logging
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
@@ -94,4 +96,4 @@ if __name__ == "__main__":
     
     poller = Thread(target=poll_and_save, daemon=True)
     poller.start()
-    socketio.run(app, host=host, port=port, debug=True, use_reloader=False)
+    socketio.run(app, host=host, port=port, use_reloader=False)
