@@ -428,10 +428,12 @@
                 if (!el) return;
                 if (lastTimestamp == null) {
                     el.textContent = 'Waiting for data...';
+                    el.style.color = '#666';
                     return;
                 }
                 const secondsAgo = Math.floor(Date.now() / 1000 - lastTimestamp);
                 el.textContent = secondsAgo <= 1 ? 'Updated just now' : `Updated ${secondsAgo} seconds ago`;
+                el.style.color = secondsAgo > 25 ? '#c62828' : '#666'; // red if more than 10 seconds old
             }, 1000);
 
             //Draw polyline(s) for the selected route + direction
