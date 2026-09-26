@@ -82,7 +82,7 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        const socket = io.connect('http://' + document.domain + ':' + location.port);
+        const socket = io();
 
         //socket.onAny((ev, data) => console.log('[onAny]', ev, data));
         //socket.on('connect', () => console.log('[socket] connected'));
