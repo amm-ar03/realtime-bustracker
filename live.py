@@ -1,6 +1,7 @@
 import logging
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
+from realtime_data import poll_and_save
 import json
 import time
 import socket
@@ -83,7 +84,7 @@ def connect():
     
 if __name__ == "__main__":
     host = '0.0.0.0'
-    port = 3031
+    port = int(os.environ.get('PORT', 3031))
     print(f"Local: http://localhost:{port}")
     #data_thread = Thread(target=emit_data)
     #data_thread.daemon = True
@@ -91,5 +92,6 @@ if __name__ == "__main__":
     t = Thread(target=emit_data, daemon=True)
     t.start()
     
+    poller = Thread(target=poll_and_save, daemon=True)
+    poller.start()
     socketio.run(app, host=host, port=port, debug=True, use_reloader=False)
-
