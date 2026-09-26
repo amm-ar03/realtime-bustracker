@@ -120,7 +120,48 @@
             font-size: 12px;
             color: #666;
         }
+
+        /* positions for phone screen */
+        @media (max-width: 600px) {
+            #selectBus {
+                top: 8px;
+                left: 60px;
+                right: 50px;
+                padding: 6px 8px;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            #selectBus select {
+                width: 100%;
+                font-size: 14px;
+                box-sizing: border-box;
+            }
+
+            #aboutButton {
+                top: 8px;
+                right: 8px;
+            }
+
+            #aboutPanel {
+                top: 54px;
+                left: 8px;
+                right: 8px;
+                max-width: none;
+                width: auto;
+                box-sizing: border-box;
+            }
+
+            #lastUpdated {
+                bottom: 8px;
+                left: 8px;
+                font-size: 11px;
+                padding: 3px 8px;
+            }
+        }
     </style>
+
 </head>
 
 <body>
