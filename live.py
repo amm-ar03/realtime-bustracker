@@ -1,3 +1,5 @@
+import os 
+os.environ['EVENTLET_NO_GREENDNS'] = 'yes'
 import eventlet
 eventlet.monkey_patch(dns=False)
 import logging
@@ -7,7 +9,6 @@ from realtime_data import poll_and_save
 import json
 import time
 import socket
-import os 
 from threading import Thread
 
 app = Flask(__name__)
