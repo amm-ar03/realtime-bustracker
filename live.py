@@ -1,5 +1,5 @@
 import eventlet
-eventlet.monkey_patch()
+eventlet.monkey_patch(dns=False)
 import logging
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
