@@ -6,12 +6,19 @@
     <title>Live Bus Tracking</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="static/dropdown.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
     <script src="static/tripMaps.js"></script>
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-32.png') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        * {
+            font-family: 'Permanent Marker', cursive;
+        }
+
         #map {
             height: 100vh;
             width: 100vw;
@@ -55,7 +62,6 @@
             border: none;
             background: #2e7d32;
             color: white;
-            font-family: Georgia, serif;
             font-style: italic;
             font-size: 15px;
             cursor: pointer;
@@ -72,9 +78,21 @@
             padding: 16px 18px;
             max-width: 260px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
-            font-family: system-ui, sans-serif;
-            font-size: 14px;
+            font-size: 15px;
             line-height: 1.45;
+        }
+
+        #lastUpdated {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+            font-size: 13px;
+            color: #666;
         }
 
         #aboutPanel.hidden {
@@ -107,19 +125,7 @@
             color: #888;
         }
 
-        #lastUpdated {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            z-index: 1000;
-            background: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-            font-family: system-ui, sans-serif;
-            font-size: 12px;
-            color: #666;
-        }
+
 
         /* positions for phone screen */
         @media (max-width: 600px) {
@@ -178,8 +184,8 @@
     <div id="aboutPanel" class="hidden">
         <button id="aboutClose" aria-label="Close">&times;</button>
         <h2>Victoria Transit Tracker</h2>
-        <p>Live positions for BC Transit buses in Greater Victoria, pulled from BC Transit's GTFS-Realtime feed every 5
-            seconds.</p>
+        <p>Live positions for BC Transit buses in Greater Victoria, pulled from BC Transit's GTFS-Realtime feed every
+            15-20 seconds.</p>
         <ul>
             <li>Flask + Socket.IO backend</li>
             <li>Leaflet.js for the map</li>
@@ -218,6 +224,23 @@
         }).addTo(map);
 
         const socket = io();
+        let lastTimestamp = null;
+        socket.on('timestamp_update', function (data) {
+            lastTimestamp = data.timestamp;
+        });
+
+        setInterval(() => {
+            const el = document.getElementById('lastUpdated');
+            if (!el) return;
+            if (lastTimestamp == null) {
+                el.textContent = 'Waiting for data...';
+                el.style.color = '#666';
+                return;
+            }
+            const secondsAgo = Math.floor(Date.now() / 1000 - lastTimestamp);
+            el.textContent = secondsAgo <= 1 ? 'Updated just now' : `Updated ${secondsAgo} seconds ago`;
+            el.style.color = secondsAgo > 25 ? '#c62828' : '#666'; // red if more than 10 seconds old
+        }, 1000);
 
         //socket.onAny((ev, data) => console.log('[onAny]', ev, data));
         //socket.on('connect', () => console.log('[socket] connected'));
@@ -418,23 +441,6 @@
             //Remove all existing markers
             Object.values(markers).forEach(m => map.removeLayer(m));
 
-            let lastTimestamp = null;
-            socket.on('timestamp_update', function (data) {
-                lastTimestamp = data.timestamp;
-            });
-
-            setInterval(() => {
-                const el = document.getElementById('lastUpdated');
-                if (!el) return;
-                if (lastTimestamp == null) {
-                    el.textContent = 'Waiting for data...';
-                    el.style.color = '#666';
-                    return;
-                }
-                const secondsAgo = Math.floor(Date.now() / 1000 - lastTimestamp);
-                el.textContent = secondsAgo <= 1 ? 'Updated just now' : `Updated ${secondsAgo} seconds ago`;
-                el.style.color = secondsAgo > 25 ? '#c62828' : '#666'; // red if more than 10 seconds old
-            }, 1000);
 
             //Draw polyline(s) for the selected route + direction
             let key = `${selectedRouteId}_${selectedDirectionId}`;
