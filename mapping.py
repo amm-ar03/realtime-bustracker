@@ -2,7 +2,9 @@
 import csv, json, re
 from collections import defaultdict, Counter
 
-TRIPS = "trips2.txt"
+TRIPS = "static/trips.txt"
+STOPS = "static/stops.txt"
+STOP_TIMES = "static/stop_times.txt"
 OUT   = "static/tripMaps.js"
 
 def norm(s: str) -> str:
@@ -57,6 +59,37 @@ routeToDirections_serializable = {
     for r, dmap in routeToDirections.items()
 }
 
+#bus stop locations
+stopsMeta = {}
+with open(STOPS, newline="", encoding="utf-8-sig") as f:
+    for row in csv.DictReader(f):
+        stopsMeta[row["stop_id"]] = {
+            "name": row["stop_name"],
+            "lat": float(row["stop_lat"]),
+            "lon": float(row["stop_lon"]),
+        }
+
+#one trip per pair
+representative_trip = {}
+for trip_id, info in tripIdMap.items():
+    key = (info["route_id"], info["direction_id"])
+    if key not in representative_trip:
+        representative_trip[key] = trip_id
+
+#stop sequences for each trip
+stops_by_trip = defaultdict(list)
+with open(STOP_TIMES, newline="", encoding="utf-8-sig") as f:
+    for row in csv.DictReader(f):
+        stops_by_trip[row["trip_id"]].append(
+            (int(row["stop_sequence"]), row["stop_id"])
+        )
+   
+#ordered list of stops     
+routeStops = {}
+for (route_id, direction_id), trip_id in representative_trip.items():
+    seq = sorted(stops_by_trip.get(trip_id, []))
+    routeStops[f"{route_id}|{direction_id}"] = [stop_id for _, stop_id in seq]
+    
 with open(OUT, "w", encoding="utf-8") as js:
     js.write("const tripIdMap = ")
     js.write(json.dumps(tripIdMap, ensure_ascii=False, indent=2))
@@ -64,5 +97,9 @@ with open(OUT, "w", encoding="utf-8") as js:
     js.write(json.dumps(headsignDirMajority, ensure_ascii=False, indent=2))
     js.write(";\n\nconst routeToDirections = ")
     js.write(json.dumps(routeToDirections_serializable, ensure_ascii=False, indent=2))
+    js.write(";\n\nconst stopsMeta = ")
+    js.write(json.dumps(stopsMeta, ensure_ascii=False, indent=2))
+    js.write(";\n\nconst routeStops = ")
+    js.write(json.dumps(routeStops, ensure_ascii=False, indent=2))
     js.write(";\n")
 print(f"Wrote {OUT}")
