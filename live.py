@@ -5,7 +5,7 @@ eventlet.monkey_patch()
 import logging
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
-from realtime_data import poll_and_save
+from realtime_data import poll_and_save, poll_trip_updates
 import json
 import time
 import socket
@@ -35,7 +35,7 @@ def emit_data():
                     feed_dict = json.load(f)
                     ts = feed_dict.get('header', {}).get('timestamp')
                     if ts == last_timestamp:
-                        time.sleep(0.5)
+                        time.sleep(0.1)
                         continue
                     last_timestamp = ts
                     socketio.emit('timestamp_update', {'timestamp': ts})
@@ -81,10 +81,21 @@ def emit_data():
 
 
 
+viewers = 0
 
 @socketio.on('connect')
 def connect():
+    global viewers
+    viewers += 1
+    socketio.emit('viewers_update', viewers)
     print("connected")
+    
+@socketio.on('disconnect')
+def disconnect():
+    global viewers
+    viewers -= 1
+    socketio.emit('viewers_update', viewers)
+    print("disconnected")
     
 if __name__ == "__main__":
     host = '0.0.0.0'
@@ -98,4 +109,6 @@ if __name__ == "__main__":
     
     poller = Thread(target=poll_and_save, daemon=True)
     poller.start()
+    trip_poller = Thread(target=poll_trip_updates, daemon=True)
+    trip_poller.start()
     socketio.run(app, host=host, port=port, use_reloader=False)

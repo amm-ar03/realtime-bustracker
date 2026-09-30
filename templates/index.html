@@ -63,7 +63,7 @@
             background: #2e7d32;
             color: white;
             font-style: italic;
-            font-size: 15px;
+            font-size: 11px;
             cursor: pointer;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
         }
@@ -178,21 +178,25 @@
         <select id="headsignDropdown">
             <option value="">Select a headsign</option>
         </select>
+        <label><input type="checkbox" id="showAllToggle"> Show all buses</label>
     </div>
     <button id="aboutButton" aria-label="About this project">i</button>
 
     <div id="aboutPanel" class="hidden">
         <button id="aboutClose" aria-label="Close">&times;</button>
         <h2>Victoria Transit Tracker</h2>
-        <p>Live positions for BC Transit buses in Greater Victoria, pulled from BC Transit's GTFS-Realtime feed every
+        <p>Live positions for BC Transit buses in Greater Victoria, pulled from BC Transit's GTFS-Realtime feed
+            every
             15-20 seconds.</p>
         <ul>
             <li>Flask + Socket.IO backend</li>
             <li>Leaflet.js for the map</li>
             <li>GTFS-Realtime protobuf feed, decoded live</li>
         </ul>
-        <p><a href="https://github.com/amm-ar03/realtime-bustracker.git" target="_blank" rel="noopener">View source on
+        <p><a href="https://github.com/amm-ar03/realtime-bustracker.git" target="_blank" rel="noopener">View
+                source on
                 GitHub</a></p>
+        <p><span id="viewerCount" style="color:#888; font-size:13px; margin-top:8px;"></span></p>
 
     </div>
     <div id="map"></div>
@@ -248,7 +252,12 @@
 
         //socket.on('vehicle_tick', d => console.log('[tick]', d));
 
+        socket.on('viewers_update', function (count) {
 
+            const el = document.getElementById('viewerCount');
+            if (el)
+                el.textContent += `Viewers online ${count}`;
+        });
         var markers = {};
         var polylineLayers = {};
         var selectedHeadsign = '';
@@ -261,7 +270,7 @@
         /*
         routes_polyline.features.forEach(feature => {
             const { route_id, headsign } = feature.properties;
-
+ 
             function normalize(text) {
                 return text
                     .toLowerCase()
@@ -270,21 +279,21 @@
                     .replace(/via/g, '')          // optionally remove "via"
                     .trim();
             }
-
+ 
             const tripEntry = Object.values(tripIdMap).find(t =>
                 t.route_id === route_id &&
                 normalize(t.headsign) === normalize(headsign)
             );
-
+ 
             if (!tripEntry) {
                 console.warn(`Missing direction ID for headsign "${headsign}" and route "${route_id}"`);
                 //return;
                 return;
             }
-
+ 
             const direction_id = tripEntry.direction_id;
             feature.properties.direction_id = direction_id;
-
+ 
             if (!routeToDirections[route_id]) {
                 routeToDirections[route_id] = {};
             }
@@ -308,36 +317,7 @@
             L.circle(e.latlng, radius).addTo(map);
         }
         map.on('locationfound', onLocationFound);
-        //map.locate({ setView: false, maxZoom: 16 });
-        /*
-                function resolveDir(route_id, rawHeadsign) {
-                    const table = headsignDirMajority[route_id];
-                    if (!table) return null;
-                    const n = norm(rawHeadsign);
-                    if (table[n]) return table[n].dir;
-        
-                    //soft fallback 
-                    const nNoVia = n.replace(/\s*-\s*via .*$/i, "");
-                    if (table[nNoVia]) return table[nNoVia].dir;
-        
-                    const nNoOnly = n.replace(/\s+only$/i, "");
-                    if (table[nNoOnly]) return table[nNoOnly].dir;
-        
-                    return null;
-                }
-        
-                routes_polyline.features.forEach(feature => {
-                    const p = feature.properties || {};
-                    if (!p.route_id || !p.headsign) return;
-                    const d = resolveDir(p.route_id, p.headsign);
-                    if (d !== null) {
-                        p.direction_id = d;
-                    } else {
-                        console.warn(`Could not resolve direction for route "${p.route_id}" and headsign "${p.headsign}" (normalized: "${norm(p.headsign)}")`);
-        
-                    }
-                });
-        */
+
         function busIconSVG(color) {
             return `
             <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
@@ -431,6 +411,20 @@
                 popupAnchor: [0, -11],
             });
         }
+        let showAll = false;
+        function shouldShow(m) {
+            const hasSelection = selectedRouteId && selectedDirectionId !== null && !isNaN(selectedDirectionId);
+            return hasSelection
+                ? (m.routeId === selectedRouteId && m.directionId === selectedDirectionId)
+                : showAll;
+        }
+
+        document.getElementById('showAllToggle').addEventListener('change', e => {
+            showAll = e.target.checked;
+            Object.values(markers).forEach(m => shouldShow(m) ? m.addTo(map) : map.removeLayer(m));
+        });
+
+
         document.getElementById("headsignDropdown").addEventListener("change", function (e) {
             selectedDirectionId = parseInt(e.target.value);
 
@@ -490,6 +484,19 @@
             if (!markers[vehicle_id]) {
                 markers[vehicle_id] = L.marker([latitude, longitude], { icon: busIconWithOccupancy(vehicle_seats, route_id) })
                     .bindPopup(popupHtml);
+                markers[vehicle_id].on('click', function () {
+                    Object.values(polylineLayers).flat().forEach(p => map.removeLayer(p));
+                    polylineLayers = { click: [] };
+                    routes_polyline.features.forEach(f => {
+                        const p = f.properties;
+                        if (p.route_id === this.routeId && p.direction_id === this.directionId) {
+                            polylineLayers.click.push(L.geoJSON(f, {
+                                style: { color: getColorForRoute(p.route_id), weight: 6, className: 'crayon-line' }
+                            }).addTo(map));
+                        }
+                    });
+                });
+
             } else {
                 markers[vehicle_id].setLatLng([latitude, longitude]);
                 markers[vehicle_id].setIcon(busIconWithOccupancy(vehicle_seats, route_id)); // refresh badge as occupancy changes
@@ -508,10 +515,11 @@
                 dirTypes: [typeof direction_id, typeof selectedDirectionId]
             });
             // ONLY show marker if it matches selection
-            if (
-                route_id === selectedRouteId &&
-                direction_id === selectedDirectionId
-            ) {
+
+            markers[vehicle_id].routeId = route_id;
+            markers[vehicle_id].directionId = direction_id;
+
+            if (shouldShow(markers[vehicle_id])) {
                 markers[vehicle_id].addTo(map);
             } else {
                 map.removeLayer(markers[vehicle_id]);
