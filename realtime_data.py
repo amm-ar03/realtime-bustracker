@@ -6,6 +6,7 @@ from google.transit import gtfs_realtime_pb2
 from google.protobuf.json_format import MessageToJson
 
 REALTIME_DATA_URL = 'https://bct.tmix.se/gtfs-realtime/vehicleupdates.pb?operatorIds=48'
+TRIP_UPDATES_URL = 'https://bct.tmix.se/gtfs-realtime/tripupdates.pb?operatorIds=48'
 
 def download_data(url):
     try:
@@ -42,6 +43,15 @@ def save_data(data, filename):
         print(f"Error saving data {e}")
 
 def poll_and_save(url=REALTIME_DATA_URL, filename='gtfs_realtime.json', interval=5):
+    while True:
+        data = download_data(url)
+        if data:
+            json_data = proto_to_json(data)
+            if json_data:
+                save_data(json_data, filename)
+        time.sleep(interval)
+        
+def poll_trip_updates(url=TRIP_UPDATES_URL, filename='gtfs_trip_updates.json', interval=10):
     while True:
         data = download_data(url)
         if data:
